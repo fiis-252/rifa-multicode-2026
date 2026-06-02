@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raffle Login - Control Panel</title>
+  <link rel="stylesheet" href="/src/css/global.css">
+</head>
+<body>
+  <main class="auth-container">
+    <h2>Ingreso de Delegados y Vendedores</h2>
+    
+    <form id="form-request-otp">
+      <label for="identifier">Correo Institucional o Código UNI</label>
+      <input type="text" id="identifier" required placeholder="example@uni.pe">
+      <button type="submit">Solicitar Código de Acceso</button>
+    </form>
+
+    <form id="form-verify-otp" style="display: none;">
+      <label for="otp">Código OTP Recibido</label>
+      <input type="text" id="otp" required placeholder="123456" maxlength="6">
+      <button type="submit">Verificar e Ingresar</button>
+    </form>
+  </main>
+
+  <script type="module">
+    import { apiClient } from '/src/js/api.js';
+
+    const reqForm = document.getElementById('form-request-otp');
+    const verifyForm = document.getElementById('form-verify-otp');
+    let userIdentifier = '';
+
+    reqForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      userIdentifier = document.getElementById('identifier').value.trim();
+      
+      const res = await apiClient.auth.sendOtp(userIdentifier);
+      if (res && res.success) {
+        reqForm.style.display = 'none';
+        verifyForm.style.display = 'block';
+      } else {
+        alert('Error al enviar el OTP. Verifique los datos.');
+      }
+    });
+
+    verifyForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const otpCode = document.getElementById('otp').value.trim();
+
+      const res = await apiClient.auth.verifyOtp(userIdentifier, otpCode);
+      if (res && res.token) {
+        sessionStorage.setItem('vendor_token', res.token);
+        sessionStorage.setItem('vendor_code', res.code);
+        window.location.replace('/dashboard');
+      } else {
+        alert('Código incorrecto o expirado.');
+      }
+    });
+  </script>
+</body>
+</html>

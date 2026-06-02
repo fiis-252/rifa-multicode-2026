@@ -1,0 +1,42 @@
+{
+	"cleanUrls": true,
+	"trailingSlash": false,
+	"rewrites": [
+		{
+			"source": "/",
+			"destination": "/src/index.html"
+		},
+		{
+			"source": "/login",
+			"destination": "/src/html/login.html"
+		},
+		{
+			"source": "/dashboard",
+			"destination": "/src/html/dashboard.html"
+		},
+		{
+			"source": "/leaderboard",
+			"destination": "/src/html/leaderboard.html"
+		}
+	],
+	"headers": [
+		{
+			"source": "/src/js/(.*)",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "no-cache, no-store, must-revalidate"
+				}
+			]
+		},
+		{
+			"source": "/assets/(.*)",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=31536000, immutable"
+				}
+			]
+		}
+	]
+}
