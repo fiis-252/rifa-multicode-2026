@@ -28,7 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				}
 			} catch (error) {
 				console.error('[auth error]', error);
-				alert('Fallo de conexión al solicitar OTP, conversar con su delegado de codigo');
+				alert(
+					'Fallo de conexión al solicitar OTP, conversar con su delegado de codigo',
+				);
 			}
 		});
 	}
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (res && res.token) {
 					sessionStorage.setItem('vendor_token', res.token);
 					sessionStorage.setItem('vendor_code', res.code);
-					window.location.replace('/vender');
+					window.location.replace('/dashboard');
 				} else {
 					alert('Código incorrecto o expirado.');
 				}

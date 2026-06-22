@@ -4,7 +4,7 @@
 	"rewrites": [
 		{ "source": "/", "destination": "/index.html" },
 		{ "source": "/login", "destination": "/login.html" },
-		{ "source": "/vender", "destination": "/dashboard.html" },
+		{ "source": "/dashboard", "destination": "/dashboard.html" },
 		{ "source": "/leaderboard", "destination": "/leaderboard.html" },
 		{ "source": "/css/:path*", "destination": "/src/css/:path*" },
 		{ "source": "/js/:path*", "destination": "/src/js/:path*" }
