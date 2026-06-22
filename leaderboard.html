@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Estadisticas - Rifa Multicódigo 2026</title>
+		<link
+			rel="stylesheet"
+			href="/src/css/global.css" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Montserrat:wght@400;600&family=Poppins:wght@600;700&display=swap"
+			rel="stylesheet" />
+		<!-- <link rel="stylesheet" href="https://devchrisacosta.net/main_ui"> -->
+
+		<script src="/src/js/router.js"></script>
+	</head>
+	<body>
+		<header>
+			<h1>Estadisticas Globales</h1>
+			<nav>
+				<a href="/vender">Vender</a>
+			</nav>
+		</header>
+
+		<main>
+			<section class="card text-center">
+				<h2>Total Recaudado Estimado</h2>
+				<h1
+					id="total-tickets"
+					style="color: var(--color-secondary); font-size: 3rem">
+					--
+				</h1>
+				<p id="amt-tks-sold-txt">boletos vendidos en total</p>
+			</section>
+
+			<section class="card">
+				<h3>Ranking por Código</h3>
+				<ul
+					id="code-ranking"
+					style="list-style: none; padding: 0">
+					<li>Cargando métricas...</li>
+				</ul>
+			</section>
+
+			<section class="card">
+				<h3>Top Vendedores</h3>
+				<ul
+					id="top-vendors-list"
+					style="list-style: none; padding: 0">
+					<li>Calculando top historico...</li>
+				</ul>
+			</section>
+		</main>
+
+		<script
+			type="module"
+			src="/src/js/leaderboard.js"></script>
+	</body>
+</html>

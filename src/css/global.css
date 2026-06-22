@@ -1,49 +1,169 @@
 /* src/css/global.css */
+
 :root {
-  --color-primary: #003366; /* UNI / FIIS Base Blue */
-  --color-secondary: #0055A4;
-  --color-accent: #FFD700;
-  --color-bg: #F4F7F6;
-  --color-surface: #FFFFFF;
-  --color-text: #333333;
+  /* Dark Theme Matrix */
+  --bg-color: #0d1117;
+  --surface-color: rgba(22, 27, 34, 0.6); /* Translucent surface */
+  --text-color: #e6edf3;
+  --text-muted: #8b949e;
+  --border-color: rgba(255, 255, 255, 0.1);
   
-  --radius-sm: 4px;
-  --radius-md: 8px;
+  /* Neon Accents */
+  --theme-primary: #7FC9F7;   
+  --theme-secondary: #FF5455; 
   
-  --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Typography Engine */
+  --font-static-headings: 'Poppins', sans-serif;
+  --font-static-body: 'Montserrat', sans-serif;
+  --font-dynamic: 'Fredoka', sans-serif;
+  
+  --radius-sm: 6px;
+  --radius-md: 12px;
 }
 
+/* =========================================
+   DYNAMIC THEME OVERRIDES (THE STATE MACHINE)
+   ========================================= */
+
+body[data-code="24-1"] { 
+  --theme-primary: #74D437; 
+  --theme-secondary: #FDFFFE; 
+  --bg-color: #0a1408; /* Subtle green dark void */
+}
+body[data-code="24-2"] { 
+  --theme-primary: #DA5645; 
+  --theme-secondary: #342a28; 
+  --bg-color: #140807; /* Subtle red dark void */
+}
+body[data-code="25-1"] { 
+  --theme-primary: #662C9C; 
+  --theme-secondary: #2f2834; 
+  --bg-color: #0d0614; /* Subtle purple dark void */
+}
+body[data-code="25-2"] { 
+  --theme-primary: #E6C074; /* Using the bright yellow as primary for contrast */
+  --theme-secondary: #163D4E; /* Using olive as secondary depth */
+  --bg-color: #050a0d; /* Subtle olive dark void */
+}
+
+/* =========================================
+   BASE STYLES & ARCHITECTURE
+   ========================================= */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: var(--font-main);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  font-family: var(--font-static-body);
+  background-color: var(--bg-color);
+  color: var(--text-color);
   line-height: 1.6;
+  padding: 20px;
+  transition: background-color 0.8s ease, --theme-primary 0.8s ease;
 }
 
-main { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+h1, h2, h3, h4 { font-family: var(--font-static-headings); font-weight: 700; }
+main { max-width: 800px; margin: 0 auto; }
 
+/* The Glassmorphism Engine */
 .card, section, .auth-container {
-  background: var(--color-surface);
+  background: var(--surface-color);
+  backdrop-filter: blur(12px); /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(12px);
   padding: 1.5rem;
   border-radius: var(--radius-md);
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
   margin-bottom: 1.5rem;
+  transition: border-color 0.5s ease;
 }
 
-label { display: block; margin-bottom: 0.5rem; font-weight: 600; }
+/* Subtle Border Glow (Replaces heavy gradient) */
+.card:hover, section:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Dynamic Text Targets */
+#countdown-timer, .yape-number-badge, .ticket-num { 
+  font-family: var(--font-dynamic); 
+  letter-spacing: 1px;
+}
+
+/* Flat, Opacity-Driven Form Elements */
+label, a { display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-muted); font-size: 0.9rem;}
 input { 
-  width: 100%; padding: 0.75rem; margin-bottom: 1rem;
-  border: 1px solid #ccc; border-radius: var(--radius-sm);
+  width: 100%; padding: 0.85rem; margin-bottom: 1.2rem;
+  background: rgba(0, 0, 0, 0.2); color: var(--text-color);
+  border: 1px solid var(--border-color); border-radius: var(--radius-sm);
+  font-family: var(--font-static-body);
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+input:focus {
+  outline: none;
+  border-color: var(--theme-primary);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
 }
 
+/* Solid Flat Buttons */
 button {
-  background-color: var(--color-primary); color: white;
-  border: none; padding: 0.75rem 1.5rem; border-radius: var(--radius-sm);
-  cursor: pointer; font-weight: bold; width: 100%;
+  background-color: var(--theme-primary);
+  color: #000000; /* Dark text for high contrast against neon colors */
+  border: none; padding: 0.85rem 1.5rem; 
+  border-radius: var(--radius-sm); cursor: pointer; 
+  font-weight: 600; width: 100%; font-size: 1rem;
+  font-family: var(--font-static-headings);
+  transition: transform 0.1s, opacity 0.2s, background-color 0.8s ease;
 }
-button:hover { background-color: var(--color-secondary); }
+button:hover { opacity: 0.85; transform: translateY(-1px); }
+button:active { transform: translateY(1px); }
+
+/* Unified Logo & QR Layouts */
+.logo-grid { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+.promo-logo { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border-color); }
+.qr-card { display: flex; flex-direction: column; align-items: center; }
+.qr-image { width: 220px; border-radius: var(--radius-md); margin-bottom: 1rem; }
+.yape-number-badge {
+  display: inline-block; margin-top: 10px; padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.05); 
+  border: 1px solid var(--theme-primary);
+  color: var(--theme-primary);
+  border-radius: 20px; font-size: 1.2rem; font-weight: bold;
+}
+
+/* Gradient Borders for Emphasis */
+.border-gradient {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+.border-gradient::after {
+  content: '';
+  position: absolute;
+  top: -1px; bottom: -1px; left: -1px; right: -1px;
+  background: linear-gradient(135deg, var(--theme-primary), var(--theme-secondary));
+  z-index: -1;
+  border-radius: var(--radius-md);
+  opacity: 0.8;
+  transition: background 0.8s ease;
+}
+
+.qr-details { text-align: center; width: 100%; }
 
 .text-center { text-align: center; }
-hr { border: 0; height: 1px; background: #e0e0e0; margin: 2rem 0; }
+hr { border: 0; height: 1px; background: var(--border-color); margin: 2rem 0; }
+
+/* 3D Canvas Container */
+#three-canvas-container {
+  width: 100%;
+  height: 400px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  background: radial-gradient(circle at center, #161b22 0%, #0d1117 100%);
+  margin-bottom: 1.5rem;
+  position: relative;
+  cursor: grab;
+}
+#three-canvas-container:active { cursor: grabbing; }
+
+#btn-buy-random {
+  margin-top: 1rem;
+}

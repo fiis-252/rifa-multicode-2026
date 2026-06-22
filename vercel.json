@@ -2,10 +2,10 @@
 	"cleanUrls": true,
 	"trailingSlash": false,
 	"rewrites": [
-		{ "source": "/", "destination": "/src/index.html" },
-		{ "source": "/login", "destination": "/src/html/login.html" },
-		{ "source": "/dashboard", "destination": "/src/html/dashboard.html" },
-		{ "source": "/leaderboard", "destination": "/src/html/leaderboard.html" },
+		{ "source": "/", "destination": "/index.html" },
+		{ "source": "/login", "destination": "/login.html" },
+		{ "source": "/vender", "destination": "/dashboard.html" },
+		{ "source": "/leaderboard", "destination": "/leaderboard.html" },
 		{ "source": "/css/:path*", "destination": "/src/css/:path*" },
 		{ "source": "/js/:path*", "destination": "/src/js/:path*" }
 	]

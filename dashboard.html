@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Ventas - Rifa Multicódigo 2026</title>
+		<link
+			rel="stylesheet"
+			href="/src/css/global.css" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Montserrat:wght@400;600&family=Poppins:wght@600;700&display=swap"
+			rel="stylesheet" />
+		<!-- <link rel="stylesheet" href="https://devchrisacosta.net/main_ui"> -->
+		<script src="/src/js/router.js"></script>
+	</head>
+	<body>
+		<header
+			style="
+				justify-content: center;
+				display: flex;
+				flex-direction: column;
+				margin-bottom: 2rem;
+        gap: 1rem;
+			">
+			<h1>Registro de Venta</h1>
+			<button
+				id="btn-logout"
+				style="width: auto">
+				Cerrar Sesión
+			</button>
+		</header>
+
+		<main>
+			<section id="payment-routing-zone" style="display:flex;gap:1rem;flex-direction: column;">
+				<h3 id="qr-h3">Tesorería</h3>
+				<div id="qr-container">
+					<p>Cargando información de recaudo...</p>
+				</div>
+			</section>
+
+			<hr />
+
+			<section id="ticket-registration">
+				<h3>Registrar Venta de Boleto</h3>
+				<form id="form-sell-ticket">
+					<label for="buyer-name">Nombre del Comprador</label>
+					<input
+						type="text"
+						id="buyer-name"
+            maxlength="16"
+						required />
+
+					<label for="buyer-phone">Teléfono WhatsApp</label>
+					<input
+						type="tel"
+						id="buyer-phone"
+						required
+						placeholder="912345678" />
+
+					<button type="submit">Confirmar Venta</button>
+				</form>
+			</section>
+		</main>
+
+		<script
+			type="module"
+			src="./src/js/dashboard.js"></script>
+	</body>
+</html>

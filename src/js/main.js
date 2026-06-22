@@ -1,6 +1,10 @@
-// 1. Temporizador del Sorteo
-const targetDate = new Date('2026-07-15T18:00:00').getTime();
+import { initHolograms } from './holograms.js';
+const targetDate = new Date('2026-07-03T19:00:00').getTime();
 const timerElement = document.getElementById('countdown-timer');
+const vendorCode = sessionStorage.getItem('vendor_code');
+if (vendorCode) {
+	document.body.setAttribute('data-code', vendorCode);
+}
 
 function updateCountdown() {
 	const now = new Date().getTime();
@@ -28,38 +32,53 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// 2. Enrutador Equitativo de Compradores (WhatsApp)
 const buyBtn = document.getElementById('btn-buy-random');
 
 if (buyBtn) {
 	buyBtn.addEventListener('click', () => {
-		// El mensaje predeterminado que aparecerá en WhatsApp
 		const msg =
-			'?text=Hola,%20quiero%20comprar%20un%20boleto%20para%20la%20rifa%20FIIS';
+			'?text=Hola,%20quiero%20comprar%20un%20boleto%20para%20la%20rifa%20FIIS%202026';
 
-		// REEMPLAZAR ESTOS NÚMEROS: Mantener el 51 (Código de Perú) seguido de los 9 dígitos
 		const treasurers = {
-			'24-2': [
-				`https://wa.me/51999999991${msg}`,
-				`https://wa.me/51999999992${msg}`,
+			'24-1': [
+				`https://wa.me/51959260609${msg}`,
+				`https://wa.me/51987210334${msg}`,
+				`https://wa.me/51912559471${msg}`,
+				`https://wa.me/51939854051${msg}`,
+				`https://wa.me/51955064250${msg}`,
+				`https://wa.me/51954256797${msg}`,
+				`https://wa.me/51960274974${msg}`,
+				`https://wa.me/51949496866${msg}`,
+				`https://wa.me/51929416952${msg}`,
+				`https://wa.me/51949320276${msg}`,
+				`https://wa.me/51983476070${msg}`,
+				`https://wa.me/51967366970${msg}`,
+				`https://wa.me/51927723495${msg}`,
+				`https://wa.me/51936997115${msg}`,
+				`https://wa.me/51994264939${msg}`,
 			],
+			'24-2': [`https://wa.me/51980322820${msg}`],
 			'25-1': [
-				`https://wa.me/51999999993${msg}`,
-				`https://wa.me/51999999994${msg}`,
+				`https://wa.me/51921584492${msg}`,
+				`https://wa.me/51979091548${msg}`,
+				`https://wa.me/51921584492${msg}`,
+				`https://wa.me/51973274878${msg}`,
 			],
-			'25-2': [
-				`https://wa.me/51999999995${msg}`, // <-- Reemplaza por el tuyo / tu equipo
-				`https://wa.me/51999999996${msg}`,
-			],
+			'25-2': [`https://wa.me/51999999996${msg}`],
 		};
 
-		// Extrae todas las listas y las aplana en un solo gran array (O(N) time complexity)
-		const allLinks = Object.values(treasurers).flat();
+    const promoCodes = Object.keys(treasurers); // ['24-1', '24-2', '25-1', '25-2']
+    const selectedCodeIndex = Math.floor(Math.random() * promoCodes.length);
+    const winningCode = promoCodes[selectedCodeIndex];
 
-		// Selecciona un número entero al azar basado en el total de tesoreros reales
-		const equitableIndex = Math.floor(Math.random() * allLinks.length);
+    const cohortTreasurers = treasurers[winningCode];
+    const treasurerIndex = Math.floor(Math.random() * cohortTreasurers.length);
+    const finalLink = cohortTreasurers[treasurerIndex];
 
-		// Descomentado y activado. ¡Redirige al cliente!
-		window.location.href = allLinks[equitableIndex];
+    console.log(`[ROUTER] Traffic routed to Promo ${winningCode}`);
+
+    window.location.href = finalLink;
 	});
 }
+
+document.addEventListener('DOMContentLoaded', initHolograms);

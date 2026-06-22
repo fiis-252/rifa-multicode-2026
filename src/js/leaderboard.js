@@ -2,12 +2,18 @@
 import { apiClient } from './api.js';
 
 async function loadStats() {
+	const vendorCode = sessionStorage.getItem('vendor_code');
+	if (vendorCode) {
+		document.body.setAttribute('data-code', vendorCode);
+	}
 	try {
 		const data = await apiClient.tickets.getStats();
 
 		if (data) {
 			const totalEl = document.getElementById('total-tickets');
 			if (totalEl) totalEl.innerText = data.total;
+			const tktamt = document.getElementById('amt-tks-sold-txt');
+			if (tktamt) tktamt.innerText = `boleto${data.total == 1 ? '' : 's'} vendido${data.total == 1 ? '' : 's'} en total`;
 
 			const codeList = document.getElementById('code-ranking');
 			if (codeList && data.codes) {
@@ -21,7 +27,7 @@ async function loadStats() {
 						li.style.display = 'flex';
 						li.style.justifyContent = 'space-between';
 
-						li.innerHTML = `<strong>Codigo ${code}</strong> <span style="color: var(--color-primary); font-weight: bold;">${amount} boletos</span>`;
+						li.innerHTML = `<strong>Codigo ${code}</strong> <span style="color: var(--color-primary); font-weight: bold;">${amount} boleto${amount == 1 ? '' : 's'}</span>`;
 						codeList.appendChild(li);
 					});
 			}
@@ -32,7 +38,8 @@ async function loadStats() {
 
 				const sortedVendors = data.topVendors
 					.sort((a, b) => b.sold - a.sold)
-					.slice(0, 10);
+					.slice(0, 10)
+					.filter((a) => a.sold != 0);
 
 				if (sortedVendors.length === 0) {
 					vendorList.innerHTML =
@@ -53,7 +60,6 @@ async function loadStats() {
 						else
 							medal = `<span style="display:inline-block; width: 24px; text-align: center; color: #888;">${index + 1}.</span> `;
 
-						// Asumimos que el backend retorna 'name', si no, hacemos un fallback seguro al 'identifier'
 						const vendorName = vendor.name || vendor.identifier;
 
 						li.innerHTML = `
@@ -62,7 +68,7 @@ async function loadStats() {
                 <small style="color: #666; margin-left: 5px;">(${vendor.code})</small>
               </span> 
               <span style="background: var(--color-bg); padding: 2px 8px; border-radius: var(--radius-sm); font-weight: bold; font-size: 0.9rem;">
-                ${vendor.sold} tks
+                ${vendor.sold} ticket${vendor.sold == 1 ? '' : 's'}
               </span>
             `;
 						vendorList.appendChild(li);
@@ -84,5 +90,4 @@ async function loadStats() {
 	}
 }
 
-// Inicializar el renderizado cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', loadStats);

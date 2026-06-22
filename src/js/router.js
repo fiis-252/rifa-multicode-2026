@@ -1,5 +1,5 @@
 (function () {
-	const secureRoutes = ['/dashboard'];
+	const secureRoutes = ['/vender'];
 	const currentPath = window.location.pathname;
 	const token = sessionStorage.getItem('vendor_token');
 	const isSecure = secureRoutes.some((route) => currentPath.startsWith(route));

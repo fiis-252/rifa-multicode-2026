@@ -1,0 +1,78 @@
+<!doctype html>
+<html
+	lang="es"
+	data-theme="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+
+		<title>Login - Rifa Multicódigo 2026</title>
+		<link
+			rel="stylesheet"
+			href="./src/css/global.css" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Montserrat:wght@400;600&family=Poppins:wght@600;700&display=swap"
+			rel="stylesheet" />
+		<!-- <link rel="stylesheet" href="https://devchrisacosta.net/main_ui"> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+	</head>
+	<body style="display:flex; flex-direction:column; justify-content: center; align-items: center; min-height: 100vh;">
+    
+    <div style="width: 100%; max-width: 450px; display: flex; flex-direction: column;">
+      
+      <main class="auth-container">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;">Ingreso de Vendedores</h2>
+
+        <form id="form-request-otp">
+          <label for="identifier">Correo Institucional o Código UNI</label>
+          <input
+            type="text"
+            id="identifier"
+            required
+            placeholder="example@uni.pe" />
+          <button type="submit">Solicitar Código de Acceso</button>
+        </form>
+
+        <form
+          id="form-verify-otp"
+          style="display: none">
+          <label for="otp">Código OTP Recibido</label>
+          <input
+            type="text"
+            id="otp"
+            required
+            placeholder="123456"
+            maxlength="6" />
+          <button type="submit">Verificar e Ingresar</button>
+        </form>
+      </main>
+
+      <section
+        style="
+          background: transparent;
+          border: none;
+          box-shadow: none;
+          padding: 0;
+          width: 100%;
+        ">
+        <div
+          id="three-canvas-container"
+          style="height: 40vh; width: 100%;"></div>
+      </section>
+
+    </div>
+
+    <script
+      type="module"
+      src="/src/js/auth.js"></script>
+  </body>
+</html>

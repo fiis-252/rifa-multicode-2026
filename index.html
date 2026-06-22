@@ -1,0 +1,100 @@
+<!doctype html>
+<html
+	lang="es"
+	data-theme="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Gran Rifa Multicódigo FIIS</title>
+		<link
+			rel="stylesheet"
+			href="./src/css/global.css" />
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Montserrat:wght@400;600&family=Poppins:wght@600;700&display=swap"
+			rel="stylesheet" />
+		<!-- <link rel="stylesheet" href="https://devchrisacosta.net/main_ui"> -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+	</head>
+	<body>
+		<main class="text-center">
+			<header class="card border-gradient">
+				<h1>Gran Rifa Multicódigo FIIS</h1>
+
+				<div
+					class="logo-grid"
+					style="margin-top: 1.5rem">
+					<img
+						src="./assets/logo-241.png"
+						alt="Promo 24-1"
+						class="promo-logo" />
+					<img
+						src="./assets/logo-242.png"
+						alt="Promo 24-2"
+						class="promo-logo" />
+					<img
+						src="./assets/logo-251.png"
+						alt="Promo 25-1"
+						class="promo-logo" />
+					<img
+						src="./assets/logo-252.png"
+						alt="Promo 25-2"
+						class="promo-logo" />
+				</div>
+			</header>
+
+			<section id="countdown-container">
+				<h2>Faltan para el sorteo</h2>
+				<h1 id="countdown-timer">00d 00h 00m 00s</h1>
+			</section>
+
+			<section
+				id="prizes-section"
+				class="text-center">
+				<h2
+					style="
+						color: var(--theme-primary);
+						text-shadow: 0 0 10px var(--theme-primary);
+					">
+					Premios Principales
+				</h2>
+				<p style="color: var(--text-muted); margin-bottom: 1rem">
+					Desliza para explorar
+				</p>
+				<div id="three-canvas-container"></div>
+			</section>
+
+			<section id="purchase-action">
+				<h3>¿Quieres apoyar y participar?</h3>
+				<p>
+				</p>
+				<button id="btn-buy-random">Comprar Boleto Ahora</button>
+			</section>
+
+			<div style="margin-top: 2rem">
+				<a
+					href="/login"
+					style="
+						color: var(--color-primary);
+						text-decoration: none;
+						font-size: 0.9rem;
+					">
+					Acceso para Vendedores
+				</a>
+			</div>
+		</main>
+
+		<script
+			type="module"
+			src="./src/js/main.js"></script>
+	</body>
+</html>

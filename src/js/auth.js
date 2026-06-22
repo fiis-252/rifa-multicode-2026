@@ -1,9 +1,15 @@
 import { apiClient } from './api.js';
+import { initHolograms } from './holograms.js';
 
 document.addEventListener('DOMContentLoaded', () => {
 	const reqForm = document.getElementById('form-request-otp');
 	const verifyForm = document.getElementById('form-verify-otp');
 	let userIdentifier = '';
+	const vendorCode = sessionStorage.getItem('vendor_code');
+	if (vendorCode) {
+		document.body.setAttribute('data-code', vendorCode);
+	}
+	initHolograms();
 
 	if (reqForm) {
 		reqForm.addEventListener('submit', async (e) => {
@@ -37,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (res && res.token) {
 					sessionStorage.setItem('vendor_token', res.token);
 					sessionStorage.setItem('vendor_code', res.code);
-					window.location.replace('/dashboard');
+					window.location.replace('/vender');
 				} else {
 					alert('Código incorrecto o expirado.');
 				}
