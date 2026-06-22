@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Panel de Ventas - RIfa Multicódigo</title>
+  <title>Ventas - Rifa Multicódigo 2026</title>
   <link rel="stylesheet" href="/src/css/global.css">
   <script src="/src/js/router.js"></script>
 </head>
@@ -14,11 +14,9 @@
   </header>
 
   <main>
-    <!-- Section dynamically adjusted based on vendor profile context -->
     <section id="payment-routing-zone">
-      <h3>Tu Tesorería Asignada</h3>
+      <h3>Tesorería Asignada</h3>
       <div id="qr-container">
-        <!-- JS will render the correct Yape QR matching the vendor session -->
         <p>Cargando información de recaudo...</p>
       </div>
     </section>
@@ -39,50 +37,6 @@
     </section>
   </main>
 
-  <script type="module">
-    import { apiClient } from '/src/js/api.js';
-
-    // 1. Dynamic Payment QR Routing Initialization
-    const vendorCode = sessionStorage.getItem('vendor_code');
-    const qrContainer = document.getElementById('qr-container');
-    
-    // Map isolated treasuries natively
-    const qrMapping = {
-      '24-2': '/assets/qr-yape-242.png',
-      '25-1': '/assets/qr-yape-251.png',
-      '25-2': '/assets/qr-yape-252.png'
-    };
-
-    if (qrMapping[vendorCode]) {
-      qrContainer.innerHTML = `<img src="${qrMapping[vendorCode]}" alt="QR Yape ${vendorCode}" width="200">`;
-    } else {
-      qrContainer.innerHTML = `<p>Error: Código de tesorería no identificado.</p>`;
-    }
-
-    // 2. Form Submission Handling
-    document.getElementById('form-sell-ticket').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const ticketPayload = {
-        name: document.getElementById('buyer-name').value.trim(),
-        phone: document.getElementById('buyer-phone').value.trim(),
-        code: vendorCode
-      };
-
-      const result = await apiClient.tickets.create(ticketPayload);
-      if (result && result.success) {
-        alert(`Boleto #${result.ticketNumber} registrado correctamente. El bot procesará el envío por WhatsApp.`);
-        document.getElementById('form-sell-ticket').reset();
-      } else {
-        alert('Error al registrar la transacción en el servidor.');
-      }
-    });
-
-    // 3. Logout action
-    document.getElementById('btn-logout').addEventListener('click', () => {
-      sessionStorage.clear();
-      window.location.replace('/login');
-    });
-  </script>
+  <script type="module" src="/src/js/dashboard.js"></script>
 </body>
 </html>

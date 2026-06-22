@@ -1,4 +1,5 @@
-const targetDate = new Date('2026-07-15T18:00:00').getTime(); // ajustar a la fecha de semana 14 en la que sera la rifa, aca esta puesto como 15 de julio a las 6pm
+// 1. Temporizador del Sorteo
+const targetDate = new Date('2026-07-15T18:00:00').getTime();
 const timerElement = document.getElementById('countdown-timer');
 
 function updateCountdown() {
@@ -6,7 +7,7 @@ function updateCountdown() {
 	const distance = targetDate - now;
 
 	if (distance < 0) {
-		timerElement.innerText = 'el sorteo ha comenzado'; // cambiar texto
+		if (timerElement) timerElement.innerText = '¡El sorteo ha comenzado!';
 		return;
 	}
 
@@ -15,37 +16,50 @@ function updateCountdown() {
 	const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 	const s = Math.floor((distance % (1000 * 60)) / 1000);
 
-	timerElement.innerText =
-		`${String(d).padStart(2, '0')}d ` +
-		`${String(h).padStart(2, '0')}h ` +
-		`${String(m).padStart(2, '0')}m ` +
-		`${String(s).padStart(2, '0')}s`;
+	if (timerElement) {
+		timerElement.innerText =
+			`${String(d).padStart(2, '0')}d ` +
+			`${String(h).padStart(2, '0')}h ` +
+			`${String(m).padStart(2, '0')}m ` +
+			`${String(s).padStart(2, '0')}s`;
+	}
 }
 
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-document.getElementById('btn-buy-random')?.addEventListener('click', () => { // creo que tendremos varios numeros que escoger de cada codigo
-	// falta rellenar aca los numeros de telefono de cada codigo
-	const treasurers = {
-		'24-2': [
-			'https://wa.me/51999999991?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-			'https://wa.me/51999999992?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-			'https://wa.me/51999999993?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-		],
-		'25-1': [
-			'https://wa.me/51999999991?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-			'https://wa.me/51999999992?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-			'https://wa.me/51999999993?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-		],
-		'25-2': [
-			'https://wa.me/51999999991?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-			'https://wa.me/51999999992?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-			'https://wa.me/51999999993?text=Hola,%20quiero%20comprar%20una%20rifa%20',
-		],
-	};
+// 2. Enrutador Equitativo de Compradores (WhatsApp)
+const buyBtn = document.getElementById('btn-buy-random');
 
-	const equitableIndex = Math.floor(Math.random() * treasurers.length);
+if (buyBtn) {
+	buyBtn.addEventListener('click', () => {
+		// El mensaje predeterminado que aparecerá en WhatsApp
+		const msg =
+			'?text=Hola,%20quiero%20comprar%20un%20boleto%20para%20la%20rifa%20FIIS';
 
-	window.location.href = treasurers[equitableIndex];
-});
+		// REEMPLAZAR ESTOS NÚMEROS: Mantener el 51 (Código de Perú) seguido de los 9 dígitos
+		const treasurers = {
+			'24-2': [
+				`https://wa.me/51999999991${msg}`,
+				`https://wa.me/51999999992${msg}`,
+			],
+			'25-1': [
+				`https://wa.me/51999999993${msg}`,
+				`https://wa.me/51999999994${msg}`,
+			],
+			'25-2': [
+				`https://wa.me/51999999995${msg}`, // <-- Reemplaza por el tuyo / tu equipo
+				`https://wa.me/51999999996${msg}`,
+			],
+		};
+
+		// Extrae todas las listas y las aplana en un solo gran array (O(N) time complexity)
+		const allLinks = Object.values(treasurers).flat();
+
+		// Selecciona un número entero al azar basado en el total de tesoreros reales
+		const equitableIndex = Math.floor(Math.random() * allLinks.length);
+
+		// Descomentado y activado. ¡Redirige al cliente!
+		window.location.href = allLinks[equitableIndex];
+	});
+}
