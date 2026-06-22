@@ -64,7 +64,7 @@ if (buyBtn) {
 				`https://wa.me/51921584492${msg}`,
 				`https://wa.me/51973274878${msg}`,
 			],
-			'25-2': [`https://wa.me/51999999996${msg}`],
+			'25-2': [`https://wa.me/51917862194${msg}`],
 		};
 
     const promoCodes = Object.keys(treasurers); // ['24-1', '24-2', '25-1', '25-2']
