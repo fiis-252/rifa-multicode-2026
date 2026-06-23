@@ -5,19 +5,17 @@ export const apiClient = {
 	async request(endpoint, options = {}) {
 		const token = sessionStorage.getItem('vendor_token');
 
-		const headers = {
-			'Content-Type': 'application/json',
-			...options.headers,
-		};
+		const headers = { ...options.headers };
 
 		if (token) {
 			headers['Authorization'] = `Bearer ${token}`;
 		}
 
-		const config = {
-			...options,
-			headers,
-		};
+		if (!(options.body instanceof FormData) && !headers['Content-Type']) {
+			headers['Content-Type'] = 'application/json';
+		}
+
+		const config = { ...options, headers };
 
 		try {
 			const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
@@ -56,5 +54,9 @@ export const apiClient = {
 				body: JSON.stringify(ticketData),
 			}),
 		getStats: () => apiClient.request('/tickets/stats'),
+		searchPhone: (phoneNum) =>
+			apiClient.request(`/tickets/search/${phoneNum}`, {
+				method: 'GET',
+			}),
 	},
 };
