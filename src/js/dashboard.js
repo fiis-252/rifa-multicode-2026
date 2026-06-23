@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		let selectedFile = null;
 
 		// FEATURE FLAG: Only enforce the upload system for '25-2'
-		const requiresImage = vendorCode === '25-2';
+		const requiresImage = vendorCode === '25-2' || vendorCode === '25-1'; // || vendorCode === '24-1';
 
 		if (!requiresImage) {
 			// Hide the section entirely and ensure the button starts unlocked
