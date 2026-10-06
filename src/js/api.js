@@ -3,13 +3,22 @@ const API_BASE_URL = 'https://devchrisacosta.net/api/rifa-multicode';
 
 export const apiClient = {
 	async request(endpoint, options = {}) {
-		const token = sessionStorage.getItem('vendor_token');
+		const token = localStorage.getItem("vendor_token");
+    const exp = localStorage.getItem("vendor_token_exp");
 
-		const headers = { ...options.headers };
+    if (exp && Date.now() > Number(exp)) {
+      localStorage.removeItem("vendor_token");
+      localStorage.removeItem("vendor_code");
+      localStorage.removeItem("vendor_token_exp");
+      window.location.replace("/login");
+      return null;
+    }
 
-		if (token) {
-			headers['Authorization'] = `Bearer ${token}`;
-		}
+    const headers = { ...options.headers };
+
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
 
 		if (!(options.body instanceof FormData) && !headers['Content-Type']) {
 			headers['Content-Type'] = 'application/json';
@@ -21,8 +30,8 @@ export const apiClient = {
 			const response = await fetch(`${API_BASE_URL}${endpoint}`, config);
 
 			if (response.status === 401 || response.status === 403) {
-				sessionStorage.removeItem('vendor_token');
-				sessionStorage.removeItem('vendor_code');
+				localStorage.removeItem('vendor_token');
+				localStorage.removeItem('vendor_code');
 				window.location.replace('/login');
 				return null;
 			}

@@ -1,78 +1,82 @@
 <!doctype html>
-<html
-	lang="es"
-	data-theme="dark">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0" />
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Acceso Delegados - Rifa Multicódigo FIIS</title>
 
-		<title>Login - Rifa Multicódigo 2026</title>
-		<link
-			rel="stylesheet"
-			href="./src/css/global.css" />
-		<link
-			rel="preconnect"
-			href="https://fonts.googleapis.com" />
-		<link
-			rel="preconnect"
-			href="https://fonts.gstatic.com"
-			crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Montserrat:wght@400;600&family=Poppins:wght@600;700&display=swap"
-			rel="stylesheet" />
-		<!-- <link rel="stylesheet" href="https://devchrisacosta.net/main_ui"> -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-	</head>
-	<body style="display:flex; flex-direction:column; justify-content: center; align-items: center; min-height: 100vh;">
-    
-    <div style="width: 100%; max-width: 450px; display: flex; flex-direction: column;">
-      
-      <main class="auth-container">
-        <h2 style="text-align: center; margin-bottom: 1.5rem;">Ingreso de Vendedores</h2>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/css/global.css" />
+  </head>
+  <body class="auth-body">
+    <header class="app-header">
+      <div class="header-inner">
+        <a href="/" class="brand-group">
+          <span class="badge-fiis">FIIS UNI</span>
+          <span class="brand-title">Rifa Multicódigo</span>
+        </a>
+        <a href="/" class="nav-link-btn">Volver</a>
+      </div>
+    </header>
 
-        <form id="form-request-otp">
-          <label for="identifier">Correo Institucional o Código UNI</label>
-          <input
-            type="text"
-            id="identifier"
-            required
-            placeholder="example@uni.pe" />
-          <button type="submit">Solicitar Código de Acceso</button>
+    <main class="auth-wrapper">
+      <div class="auth-card">
+        <div class="auth-header">
+          <span class="auth-shield-badge">Portal Vendedores</span>
+          <h1 class="auth-title">Ingreso de Delegados</h1>
+          <p class="auth-subtitle">Acceso exclusivo para las codigos 25-2, 26-1 y 26-2</p>
+        </div>
+
+        <!-- Formulario 1: Solicitar OTP -->
+        <form id="form-request-otp" class="auth-form">
+          <div class="form-group">
+            <label for="identifier" class="form-label">Correo Institucional o Código UNI</label>
+            <input
+              type="text"
+              id="identifier"
+              class="form-input"
+              required
+              placeholder="ejemplo@uni.pe o 2025XXXX"
+              autocomplete="username"
+            />
+          </div>
+          <button type="submit" id="btn-request-otp" class="btn btn-primary">
+            Solicitar Código OTP
+          </button>
         </form>
 
-        <form
-          id="form-verify-otp"
-          style="display: none">
-          <label for="otp">Código OTP Recibido</label>
-          <input
-            type="text"
-            id="otp"
-            required
-            placeholder="123456"
-            maxlength="6" />
-          <button type="submit">Verificar e Ingresar</button>
+        <!-- Formulario 2: Verificar OTP (oculto por defecto) -->
+        <form id="form-verify-otp" class="auth-form" style="display: none;">
+          <div class="form-group">
+            <label for="otp" class="form-label">Código de Seguridad (6 dígitos)</label>
+            <input
+              type="text"
+              id="otp"
+              class="form-input otp-input"
+              required
+              placeholder="123456"
+              maxlength="6"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+            />
+          </div>
+          <button type="submit" id="btn-verify-otp" class="btn btn-blue">
+            Verificar e Ingresar
+          </button>
+          <button type="button" id="btn-back-to-request" class="btn-text-action">
+            ← Cambiar correo o código
+          </button>
         </form>
-      </main>
 
-      <section
-        style="
-          background: transparent;
-          border: none;
-          box-shadow: none;
-          padding: 0;
-          width: 100%;
-        ">
-        <div
-          id="three-canvas-container"
-          style="height: 40vh; width: 100%;"></div>
-      </section>
+        <div id="auth-status" class="search-status" style="display: none; margin-top: 1rem;"></div>
+      </div>
+    </main>
 
-    </div>
-
-    <script
-      type="module"
-      src="/src/js/auth.js"></script>
+    <script type="module" src="./src/js/auth.js"></script>
   </body>
 </html>

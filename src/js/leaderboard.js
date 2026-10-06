@@ -1,93 +1,110 @@
-// src/js/leaderboard.js
-import { apiClient } from './api.js';
+import { apiClient } from "./api.js";
+
+const COHORT_META = {
+  "25-2": { label: "Promo 25-2 (Lobo)", color: "#fbbf24", avatar: "🐺" },
+  "26-1": { label: "Promo 26-1 (Fénix)", color: "#e51a2e", avatar: "🦅" },
+  "26-2": { label: "Promo 26-2 (Gengar)", color: "#8b5cf6", avatar: "👾" },
+};
 
 async function loadStats() {
-	const vendorCode = sessionStorage.getItem('vendor_code');
-	if (vendorCode) {
-		document.body.setAttribute('data-code', vendorCode);
-	}
-	try {
-		const data = await apiClient.tickets.getStats();
+  const totalTicketsEl = document.getElementById("total-tickets");
+  const totalRevenueEl = document.getElementById("total-revenue");
+  const soldSubTxt = document.getElementById("amt-tks-sold-txt");
+  const cohortContainer = document.getElementById("cohort-bars-container");
+  const vendorList = document.getElementById("top-vendors-list");
 
-		if (data) {
-			const totalEl = document.getElementById('total-tickets');
-			if (totalEl) totalEl.innerText = data.total;
-			const tktamt = document.getElementById('amt-tks-sold-txt');
-			if (tktamt) tktamt.innerText = `boleto${data.total == 1 ? '' : 's'} vendido${data.total == 1 ? '' : 's'} en total`;
+  try {
+    const data = await apiClient.tickets.getStats();
 
-			const codeList = document.getElementById('code-ranking');
-			if (codeList && data.codes) {
-				codeList.innerHTML = '';
-				Object.entries(data.codes)
-					.sort(([, a], [, b]) => b - a)
-					.forEach(([code, amount]) => {
-						const li = document.createElement('li');
-						li.style.padding = '10px';
-						li.style.borderBottom = '1px solid #eee';
-						li.style.display = 'flex';
-						li.style.justifyContent = 'space-between';
+    if (!data) return;
 
-						li.innerHTML = `<strong>Codigo ${code}</strong> <span style="color: var(--color-primary); font-weight: bold;">${amount} boleto${amount == 1 ? '' : 's'}</span>`;
-						codeList.appendChild(li);
-					});
-			}
+    const total = data.total || 0;
+    if (totalTicketsEl) totalTicketsEl.innerText = total;
+    if (soldSubTxt) {
+      soldSubTxt.innerText = `${total} boleto${total === 1 ? "" : "s"} emitido${total === 1 ? "" : "s"}`;
+    }
 
-			const vendorList = document.getElementById('top-vendors-list');
-			if (vendorList && data.topVendors) {
-				vendorList.innerHTML = '';
+    const revenue =
+      data.revenue ||
+      (data.totalRevenue
+        ? `S/ ${data.totalRevenue}.00`
+        : `~ S/ ${total * 4}.00`);
+    if (totalRevenueEl) totalRevenueEl.innerText = revenue;
 
-				const sortedVendors = data.topVendors
-					.sort((a, b) => b.sold - a.sold)
-					.slice(0, 10)
-					.filter((a) => a.sold != 0);
+    if (cohortContainer && data.codes) {
+      cohortContainer.innerHTML = "";
+      const cohorts = ["25-2", "26-1", "26-2"];
 
-				if (sortedVendors.length === 0) {
-					vendorList.innerHTML =
-						'<li style="text-align: center; color: #666;">Aún no hay ventas registradas.</li>';
-				} else {
-					sortedVendors.forEach((vendor, index) => {
-						const li = document.createElement('li');
-						li.style.padding = '10px';
-						li.style.borderBottom = '1px solid #eee';
-						li.style.display = 'flex';
-						li.style.justifyContent = 'space-between';
-						li.style.alignItems = 'center';
+      const codeScores = cohorts
+        .map((code) => ({
+          code,
+          count: data.codes[code] || 0,
+          meta: COHORT_META[code] || {
+            label: `Promo ${code}`,
+            color: "var(--color-blue)",
+            avatar: "🎟️",
+          },
+        }))
+        .sort((a, b) => b.count - a.count);
 
-						let medal = '';
-						if (index === 0) medal = '🥇 ';
-						else if (index === 1) medal = '🥈 ';
-						else if (index === 2) medal = '🥉 ';
-						else
-							medal = `<span style="display:inline-block; width: 24px; text-align: center; color: #888;">${index + 1}.</span> `;
+      const maxCount = Math.max(...codeScores.map((c) => c.count), 1);
 
-						const vendorName = vendor.name || vendor.identifier;
+      codeScores.forEach((item, index) => {
+        const percent = Math.round((item.count / maxCount) * 100);
+        const card = document.createElement("div");
+        card.className = "cohort-bar-row";
+        card.innerHTML = `
+          <div class="cohort-bar-info">
+            <span class="cohort-rank">#${index + 1}</span>
+            <span class="cohort-avatar-mini">${item.meta.avatar}</span>
+            <strong class="cohort-title-txt">${item.meta.label}</strong>
+            <span class="cohort-score-badge">${item.count} boletos</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" style="width: ${percent}%; background: ${item.meta.color};"></div>
+          </div>
+        `;
+        cohortContainer.appendChild(card);
+      });
+    }
 
-						li.innerHTML = `
-              <span style="font-size: 0.95rem;">
-                ${medal} <strong>${vendorName}</strong> 
-                <small style="color: #666; margin-left: 5px;">(${vendor.code})</small>
-              </span> 
-              <span style="background: var(--color-bg); padding: 2px 8px; border-radius: var(--radius-sm); font-weight: bold; font-size: 0.9rem;">
-                ${vendor.sold} ticket${vendor.sold == 1 ? '' : 's'}
-              </span>
-            `;
-						vendorList.appendChild(li);
-					});
-				}
-			}
-		}
-	} catch (err) {
-		console.error('[LEADERBOARD API ERROR]', err);
-		const codeRanking = document.getElementById('code-ranking');
-		const vendorRanking = document.getElementById('top-vendors-list');
+    if (vendorList && data.topVendors) {
+      vendorList.innerHTML = "";
+      const top = data.topVendors.filter((v) => v.sold > 0).slice(0, 10);
 
-		if (codeRanking)
-			codeRanking.innerHTML =
-				'<li style="color: red;">Error al conectar con la base de datos.</li>';
-		if (vendorRanking)
-			vendorRanking.innerHTML =
-				'<li style="color: red;">Métricas de vendedores inaccesibles.</li>';
-	}
+      if (top.length === 0) {
+        vendorList.innerHTML = `<li style="text-align: center; color: var(--text-dim); padding: 1.5rem;">Aún no hay ventas registradas.</li>`;
+        return;
+      }
+
+      top.forEach((v, idx) => {
+        let badge = `<span class="rank-pos">${idx + 1}</span>`;
+        if (idx === 0) badge = "🥇";
+        if (idx === 1) badge = "🥈";
+        if (idx === 2) badge = "🥉";
+
+        const li = document.createElement("li");
+        li.className = "vendor-item";
+        li.innerHTML = `
+          <div class="vendor-left">
+            <span class="vendor-medal">${badge}</span>
+            <div class="vendor-identity">
+              <strong>${v.name || v.identifier}</strong>
+              <small class="vendor-code-tag">${v.code || "FIIS"}</small>
+            </div>
+          </div>
+          <span class="vendor-sold-count">${v.sold} tickets</span>
+        `;
+        vendorList.appendChild(li);
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    if (cohortContainer)
+      cohortContainer.innerHTML = `<p class="table-error">No se pudieron cargar los datos de las bases.</p>`;
+    if (vendorList)
+      vendorList.innerHTML = `<li class="table-error">Error al conectar con la tabla de posiciones.</li>`;
+  }
 }
 
-document.addEventListener('DOMContentLoaded', loadStats);
+document.addEventListener("DOMContentLoaded", loadStats);

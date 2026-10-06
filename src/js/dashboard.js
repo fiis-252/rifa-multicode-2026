@@ -1,175 +1,178 @@
-import { apiClient } from './api.js';
+import { apiClient } from "./api.js";
 
-document.addEventListener('DOMContentLoaded', () => {
-	const vendorCode =  sessionStorage.getItem('vendor_code');
-	const qrContainer = document.getElementById('qr-container');
-	const qrH3 = document.getElementById('qr-h3');
+function showToast(message) {
+  const container = document.getElementById("toast-container");
+  if (!container) return;
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.innerText = message;
+  container.appendChild(toast);
+  setTimeout(() => toast.remove(), 2500);
+}
 
-	if (vendorCode) {
-		document.body.setAttribute('data-code', vendorCode);
-	}
+document.addEventListener("DOMContentLoaded", () => {
+  const vendorCode = localStorage.getItem("vendor_code") || "25-2";
+  const vendorToken = localStorage.getItem("vendor_token");
 
-	const treasuryData = {
-		'24-1': {
-			img: './assets/imgs/qr/qr-plin-241.png',
-			name: 'Gabriel Wei',
-			phone: '959260609',
-		},
-		'24-2': {
-			img: './assets/imgs/qr/qr-yape-242.png',
-			name: 'Eduardo Acosta',
-			phone: '945416248',
-		},
-		'25-1': {
-			img: './assets/imgs/qr/qr-yape-251.png',
-			name: 'Jose Canchanya',
-			phone: '921584492',
-		},
-		'25-2': {
-			img: './assets/imgs/qr/qr-yape-252.png',
-			name: 'Christopher Acosta',
-			phone: '917862194',
-		},
-	};
+  if (!vendorToken) {
+    window.location.replace("/login");
+    return;
+  }
 
-	if (qrContainer) {
-		const data = treasuryData[vendorCode];
-		if (data) {
-			if (qrH3)
-				qrH3.innerHTML = `${vendorCode == '24-1' ? 'Plin' : 'Yape'} ${vendorCode}`;
-			qrContainer.innerHTML = `
-        <div class="qr-card">
-          <img src="${data.img}" alt="QR ${vendorCode == '24-1' ? 'Plin' : 'Yape'} ${vendorCode}" class="qr-image" style="border-radius: 10px;">
-          <div class="qr-details">
-            <h4 style="margin: 0; color: var(--color-accent); font-size: 1.2rem;">${data.name}</h4>
-            <div class="yape-number-badge">
-              <span style="font-weight: bold;">${data.phone}</span> 
-            </div>
-          </div>
-        </div>
-      `;
-		} else {
-			qrContainer.innerHTML = `<p style="color: var(--danger); font-weight: bold;">Error: Código de tesorería no identificado.</p>`;
-		}
-	}
+  const badgeCode = document.getElementById("vendor-badge-code");
+  if (badgeCode) badgeCode.innerText = `PROMO ${vendorCode}`;
 
-	const sellForm = document.getElementById('form-sell-ticket');
-	if (sellForm) {
-		const uploadSection = document.getElementById('upload-section');
-		const uploadInput = document.getElementById('upload-image');
-		const captureInput = document.getElementById('capture-image');
-		const previewText = document.getElementById('file-name-preview');
-		const submitBtn = sellForm.querySelector('button[type="submit"]');
+  const btnCopy = document.getElementById("btn-copy-vendor-phone");
+  if (btnCopy) {
+    btnCopy.addEventListener("click", () => {
+      navigator.clipboard.writeText("917862194").then(() => {
+        showToast("Número 917862194 copiado");
+      });
+    });
+  }
 
-		let selectedFile = null;
+  let qtyPink = 1;
+  let qtyBlue = 0;
 
-		// FEATURE FLAG: Only enforce the upload system for '25-2'
-		const requiresImage = vendorCode === '25-2' || vendorCode === '25-1'; // || vendorCode === '24-1';
+  const elPink = document.getElementById("count-pink");
+  const elBlue = document.getElementById("count-blue");
+  const elTotal = document.getElementById("sale-total-amount");
+  const elChances = document.getElementById("sale-total-chances");
 
-		if (!requiresImage) {
-			// Hide the section entirely and ensure the button starts unlocked
-			if (uploadSection) uploadSection.style.display = 'none';
-			submitBtn.disabled = false;
-		} else {
-			// Lock the button initially for 25-2
-			submitBtn.disabled = true;
-		}
+  function updateTotals() {
+    const totalAmount = qtyPink * 5 + qtyBlue * 3;
+    const totalChances = qtyPink * 2 + qtyBlue * 1;
 
-		// File Selection Handler
-		const handleFileSelection = (event) => {
-			const file = event.target.files[0];
-			if (file) {
-				selectedFile = file;
-				previewText.textContent = `📷 Archivo adjunto: ${file.name}`;
-				previewText.style.display = 'block';
-				submitBtn.disabled = false; // Unlock button
+    if (elPink) elPink.innerText = qtyPink;
+    if (elBlue) elBlue.innerText = qtyBlue;
+    if (elTotal) elTotal.innerText = `S/ ${totalAmount}.00`;
+    if (elChances) {
+      elChances.innerText = `${totalChances} ${totalChances === 1 ? "Opción" : "Opciones"}`;
+    }
+  }
 
-				if (event.target.id === 'upload-image') captureInput.value = '';
-				else uploadInput.value = '';
-			} else {
-				selectedFile = null;
-				previewText.style.display = 'none';
-				if (requiresImage) submitBtn.disabled = true; // Relock if canceled
-			}
-		};
+  document.getElementById("btn-inc-pink")?.addEventListener("click", () => {
+    qtyPink++;
+    updateTotals();
+  });
+  document.getElementById("btn-dec-pink")?.addEventListener("click", () => {
+    if (qtyPink > 0) qtyPink--;
+    updateTotals();
+  });
+  document.getElementById("btn-inc-blue")?.addEventListener("click", () => {
+    qtyBlue++;
+    updateTotals();
+  });
+  document.getElementById("btn-dec-blue")?.addEventListener("click", () => {
+    if (qtyBlue > 0) qtyBlue--;
+    updateTotals();
+  });
 
-		if (uploadInput)
-			uploadInput.addEventListener('change', handleFileSelection);
-		if (captureInput)
-			captureInput.addEventListener('change', handleFileSelection);
+  updateTotals();
 
-		// Submission Handler
-		sellForm.addEventListener('submit', async (e) => {
-			e.preventDefault();
+  const phoneInput = document.getElementById("buyer-phone");
+  phoneInput?.addEventListener("input", (e) => {
+    let val = e.target.value.replace(/\D/g, "");
+    if (val.length > 9) val = val.slice(0, 9);
+    if (val.length > 6)
+      e.target.value = `${val.slice(0, 3)} ${val.slice(3, 6)} ${val.slice(6)}`;
+    else if (val.length > 3)
+      e.target.value = `${val.slice(0, 3)} ${val.slice(3)}`;
+    else e.target.value = val;
+  });
 
-			// Condition: They are 25-2 and forgot the file
-			if (requiresImage && !selectedFile) {
-				alert('Debes adjuntar el comprobante de pago.');
-				return;
-			}
+  const fileInput = document.getElementById("input-receipt");
+  const previewBox = document.getElementById("receipt-preview-box");
+  const thumbImg = document.getElementById("receipt-thumb");
+  const fileNameTxt = document.getElementById("receipt-file-name");
+  const btnRemoveThumb = document.getElementById("btn-remove-receipt");
+  let selectedFile = null;
 
-			submitBtn.disabled = true;
-			const originalText = submitBtn.textContent;
-			submitBtn.textContent = 'Procesando Venta...';
+  fileInput?.addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      selectedFile = file;
+      fileNameTxt.innerText = file.name;
 
-			const formData = new FormData();
-			formData.append(
-				'quantity',
-				document.getElementById('ticket-quantity').value,
-			);
-			formData.append(
-				'name',
-				document.getElementById('buyer-name').value.trim(),
-			);
-			formData.append(
-				'phone',
-				document.getElementById('buyer-phone').value.trim(),
-			);
-			formData.append('code', vendorCode);
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        thumbImg.src = event.target.result;
+        previewBox.style.display = "flex";
+      };
+      reader.readAsDataURL(file);
+    }
+  });
 
-			// Only append the receipt to the payload if it actually exists
-			if (selectedFile) {
-				formData.append('receipt', selectedFile);
-			}
+  btnRemoveThumb?.addEventListener("click", () => {
+    selectedFile = null;
+    fileInput.value = "";
+    thumbImg.src = "";
+    previewBox.style.display = "none";
+  });
 
-			try {
-				const result = await apiClient.request('/tickets', {
-					method: 'POST',
-					body: formData,
-				});
+  const sellForm = document.getElementById("form-sell-ticket");
+  const submitBtn = document.getElementById("btn-submit-sale");
 
-				if (result && result.success) {
-					alert(
-						`${document.getElementById('ticket-quantity').value} tickets registrados correctamente.`,
-					);
+  sellForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-					sellForm.reset();
-					selectedFile = null;
-					previewText.style.display = 'none';
+    const totalTickets = qtyPink + qtyBlue;
+    if (totalTickets === 0) {
+      showToast("Debes seleccionar al menos 1 boleto");
+      return;
+    }
 
-					submitBtn.textContent = originalText;
-					// Re-apply the lock logic for the next sale
-					if (requiresImage) submitBtn.disabled = true;
-					else submitBtn.disabled = false;
-				} else {
-					alert(result.error || 'Error al registrar la transacción');
-					submitBtn.disabled = false;
-					submitBtn.textContent = originalText;
-				}
-			} catch (error) {
-				console.error('[ticket error]', error);
-				alert('Fallo crítico al conectar con el servidor.');
-				submitBtn.disabled = false;
-				submitBtn.textContent = originalText;
-			}
-		});
-	}
+    const name = document.getElementById("buyer-name").value.trim();
+    const rawPhone = phoneInput.value.replace(/\s+/g, "");
 
-	const logoutBtn = document.getElementById('btn-logout');
-	if (logoutBtn) {
-		logoutBtn.addEventListener('click', () => {
-			sessionStorage.clear();
-			window.location.replace('/login');
-		});
-	}
+    if (rawPhone.length < 9) {
+      showToast("Ingresa un número de celular de 9 dígitos");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Emitiendo Boletos...";
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("phone", rawPhone);
+    formData.append("code", vendorCode);
+    formData.append("quantity", totalTickets);
+    formData.append("quantity_premium", qtyPink);
+    formData.append("quantity_standard", qtyBlue);
+    formData.append("total_amount", qtyPink * 5 + qtyBlue * 3);
+
+    if (selectedFile) {
+      formData.append("receipt", selectedFile);
+    }
+
+    try {
+      const res = await apiClient.request("/tickets", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res && res.success) {
+        showToast(`¡Venta confirmada! ${totalTickets} boleto(s) emitido(s).`);
+        sellForm.reset();
+        btnRemoveThumb?.click();
+        qtyPink = 1;
+        qtyBlue = 0;
+        updateTotals();
+      } else {
+        showToast(res?.error || "Error al procesar la venta.");
+      }
+    } catch (err) {
+      console.error(err);
+      showToast("Fallo crítico al conectar con el servidor.");
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerText = "Confirmar y Emitir Boletos";
+    }
+  });
+
+  document.getElementById("btn-logout")?.addEventListener("click", () => {
+    localStorage.clear();
+    window.location.replace("/login");
+  });
 });

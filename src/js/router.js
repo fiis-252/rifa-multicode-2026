@@ -1,7 +1,7 @@
 (function () {
 	const secureRoutes = ['/dashboard'];
 	const currentPath = window.location.pathname;
-	const token = sessionStorage.getItem('vendor_token');
+	const token = localStorage.getItem('vendor_token');
 	const isSecure = secureRoutes.some((route) => currentPath.startsWith(route));
 	if (isSecure && !token) {
 		console.warn(

@@ -1,68 +1,72 @@
 <!doctype html>
-<html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0" />
-		<title>Estadisticas - Rifa Multicódigo 2026</title>
-		<link
-			rel="stylesheet"
-			href="/src/css/global.css" />
-		<link
-			rel="preconnect"
-			href="https://fonts.googleapis.com" />
-		<link
-			rel="preconnect"
-			href="https://fonts.gstatic.com"
-			crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Montserrat:wght@400;600&family=Poppins:wght@600;700&display=swap"
-			rel="stylesheet" />
-		<!-- <link rel="stylesheet" href="https://devchrisacosta.net/main_ui"> -->
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estadísticas & Ranking - Rifa Multicódigo FIIS</title>
 
-		<script src="/src/js/router.js"></script>
-	</head>
-	<body>
-		<header>
-			<h1>Estadisticas Globales</h1>
-			<nav>
-				<a href="/dashboard">Dashboard</a>
-			</nav>
-		</header>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/css/global.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-inner">
+        <a href="/" class="brand-group">
+          <span class="badge-fiis">FIIS UNI</span>
+          <span class="brand-title">Rifa Multicódigo</span>
+        </a>
+        <nav class="header-actions">
+          <a href="/dashboard" class="nav-link-btn">Mi Panel</a>
+          <a href="/" class="nav-link-btn">Inicio</a>
+        </nav>
+      </div>
+    </header>
 
-		<main>
-			<section class="card text-center">
-				<h2>Total Recaudado Estimado</h2>
-				<h1
-					id="total-tickets"
-					style="color: var(--color-secondary); font-size: 3rem">
-					--
-				</h1>
-				<p id="amt-tks-sold-txt">boletos vendidos en total</p>
-			</section>
+    <main class="page-container">
+      <header class="section-header">
+        <h1 class="section-title">Guerra de Códigos</h1>
+        <p class="section-subtitle">Métricas oficiales de recaudación y participación en tiempo real</p>
+      </header>
 
-			<section class="card">
-				<h3>Ranking por Código</h3>
-				<ul
-					id="code-ranking"
-					style="list-style: none; padding: 0">
-					<li>Cargando métricas...</li>
-				</ul>
-			</section>
+      <!-- Totales Globales -->
+      <section class="leaderboard-summary-card">
+        <div class="summary-stat">
+          <span class="stat-label">Total Boletos Vendidos</span>
+          <span id="total-tickets" class="stat-number">--</span>
+          <span class="stat-sub" id="amt-tks-sold-txt">calculando...</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-stat">
+          <span class="stat-label">Recaudación Estimada</span>
+          <span id="total-revenue" class="stat-number gold-txt">--</span>
+          <span class="stat-sub">Fondo común de rifa</span>
+        </div>
+      </section>
 
-			<section class="card">
-				<h3>Top Vendedores</h3>
-				<ul
-					id="top-vendors-list"
-					style="list-style: none; padding: 0">
-					<li>Calculando top historico...</li>
-				</ul>
-			</section>
-		</main>
+      <!-- Batalla Tripartita (25-2 vs 26-1 vs 26-2) -->
+      <section class="rivalry-section">
+        <h2 class="subcard-title">Ranking por Promoción</h2>
+        <div id="cohort-bars-container" class="cohort-bars-grid">
+          <p style="text-align: center; color: var(--text-muted);">Cargando posiciones...</p>
+        </div>
+      </section>
 
-		<script
-			type="module"
-			src="/src/js/leaderboard.js"></script>
-	</body>
+      <!-- Top Vendedores -->
+      <section class="top-vendors-section">
+        <h2 class="subcard-title">Top 10 Delegados Vendedores</h2>
+        <div class="vendors-card">
+          <ul id="top-vendors-list" class="vendors-list">
+            <li class="table-loading">Calculando posiciones...</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/js/leaderboard.js"></script>
+  </body>
 </html>

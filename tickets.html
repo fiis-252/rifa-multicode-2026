@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Control de Boletos - Panel Interno FIIS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/css/global.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-inner" style="max-width: 1100px">
+        <div class="brand-group">
+          <span class="badge-fiis">ADMIN</span>
+          <span class="brand-title">Control Interno de Boletos</span>
+        </div>
+        <nav class="header-actions">
+          <a href="/dashboard" class="nav-link-btn">Panel Vendedores</a>
+          <a href="/" class="nav-link-btn">Sitio Web</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page-container" style="max-width: 1100px">
+      <section class="internal-stats-bar">
+        <div class="metric-card">
+          <span class="metric-label">Total Boletos</span>
+          <span id="metric-total-count" class="metric-num">--</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Boletos Azules (S/ 3)</span>
+          <span id="metric-blue-count" class="metric-num blue-txt">--</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Boletos Rosas (S/ 5)</span>
+          <span id="metric-pink-count" class="metric-num pink-txt">--</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Recaudación Estimada</span>
+          <span id="metric-total-money" class="metric-num gold-txt">--</span>
+        </div>
+      </section>
+
+      <section class="internal-table-card">
+        <div class="table-toolbar">
+          <div class="search-input-box">
+            <svg
+              class="search-icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="text"
+              id="filter-input"
+              placeholder="Filtrar por comprador, teléfono, # de serie o vendedor..."
+              class="filter-input"
+            />
+          </div>
+          <button
+            id="btn-refresh"
+            class="btn-refresh-table"
+            title="Refrescar lista"
+          >
+            Actualizar
+          </button>
+        </div>
+
+        <div class="table-responsive-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th># Serie</th>
+                <th>Tipo</th>
+                <th>Comprador</th>
+                <th>Teléfono WhatsApp</th>
+                <th>Código / Vendedor</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody id="tickets-table-body">
+              <tr>
+                <td colspan="6" class="table-loading">
+                  Cargando registros del servidor...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./src/js/tickets.js"></script>
+  </body>
+</html>
