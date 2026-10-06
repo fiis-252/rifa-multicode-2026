@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const badgeCode = document.getElementById("vendor-badge-code");
-  if (badgeCode) badgeCode.innerText = `PROMO ${vendorCode}`;
+  if (badgeCode) badgeCode.innerText = `CODIGO ${vendorCode}`;
 
   const btnCopy = document.getElementById("btn-copy-vendor-phone");
   if (btnCopy) {
@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+  // gonzalo te amo
 
   let qtyPink = 1;
   let qtyBlue = 0;
