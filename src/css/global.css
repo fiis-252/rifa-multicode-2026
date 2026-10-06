@@ -2,15 +2,14 @@
    DESIGN TOKENS & ROOTS (Basado en la identidad del boleto físico)
    ========================================================================== */
 :root {
-  /* Color Palette */
   --bg-base: #0a0b0e;
   --bg-surface: #12141c;
   --bg-surface-elevated: #1a1e2b;
   --bg-overlay: rgba(10, 11, 14, 0.85);
 
-  --color-crimson: #e51a2e; /* Rojo oficial del boleto */
-  --color-blue: #0077fe;    /* Azul oficial MULTICÓDIGO */
-  --color-pink: #ff2a7a;    /* Rosa neón para el Boleto Premium S/ 5 */
+  --color-crimson: #e51a2e;
+  --color-blue: #0077fe;
+  --color-pink: #ff2a7a;
   --color-gold: #fbbf24;
 
   --text-main: #f3f4f6;
@@ -20,20 +19,20 @@
   --border-subtle: rgba(255, 255, 255, 0.08);
   --border-active: rgba(255, 255, 255, 0.18);
 
-  /* Typography */
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Oswald", sans-serif;
+  --font-body:
+    "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Spacings & Geometry */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-pill: 9999px;
-  --max-w-content: 720px; /* Óptimo para Mobile-First / Phablet */
+  --max-w-content: 720px;
 }
 
-/* Base Reset */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -45,7 +44,7 @@ body {
   font-family: var(--font-body);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  padding-bottom: 90px; /* Espacio para la barra flotante móvil */
+  padding-bottom: 90px;
 }
 
 a {
@@ -53,9 +52,6 @@ a {
   text-decoration: none;
 }
 
-/* ==========================================================================
-   APP HEADER
-   ========================================================================== */
 .app-header {
   position: sticky;
   top: 0;
@@ -87,8 +83,12 @@ a {
   font-family: var(--font-display);
   font-size: 0.95rem;
   letter-spacing: 1px;
-  padding: 2px 8px;
+  height: 2.4rem;
+  padding: 0.2rem;
+  display: flex;
   border-radius: var(--radius-sm);
+  text-align: center;
+  align-items: center;
 }
 
 .brand-title {
@@ -139,9 +139,6 @@ a {
   height: 18px;
 }
 
-/* ==========================================================================
-   PAGE CONTAINER & SECTIONS
-   ========================================================================== */
 .page-container {
   max-width: var(--max-w-content);
   margin: 0 auto;
@@ -170,9 +167,6 @@ a {
   margin-top: 0.35rem;
 }
 
-/* ==========================================================================
-   HERO SECTION
-   ========================================================================== */
 .hero-section {
   display: flex;
   flex-direction: column;
@@ -206,8 +200,15 @@ a {
 }
 
 @keyframes pulse-dot {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.6; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 0.6;
+  }
 }
 
 .hero-title-group {
@@ -246,7 +247,7 @@ a {
   border-radius: 4px;
   transform: rotate(-1.5deg);
   letter-spacing: 3px;
-  box-shadow: 0 4px 20px rgba(0, 119, 254, 0.4);
+  box-shadow: 0 20px 20px rgba(0, 119, 254, 0.4);
 }
 
 .hero-tagline {
@@ -256,7 +257,6 @@ a {
   margin-top: 1rem;
 }
 
-/* Cohorts Strip */
 .cohorts-strip {
   display: flex;
   justify-content: center;
@@ -306,7 +306,6 @@ a {
   color: var(--text-main);
 }
 
-/* Countdown Card */
 .countdown-card {
   width: 100%;
   background: var(--bg-surface);
@@ -360,9 +359,6 @@ a {
   margin-top: -12px;
 }
 
-/* ==========================================================================
-   PRICING & TIERS (Decoy Pricing)
-   ========================================================================== */
 .ticket-tiers-grid {
   display: flex;
   flex-direction: column;
@@ -377,7 +373,7 @@ a {
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-between; */
+
   gap: 1.25rem;
 }
 
@@ -388,7 +384,7 @@ a {
 }
 
 .tier-card .btn {
-  margin-top: auto; /* Alineación forzada en la misma línea base */
+  margin-top: auto;
 }
 
 .featured-ribbon {
@@ -466,7 +462,7 @@ a {
   flex-direction: column;
   gap: 0.75rem;
   font-size: 0.9rem;
-  flex-grow: 1; /* Empuja el botón al fondo para que ambos queden nivelados */
+  flex-grow: 1;
 }
 
 .tier-features li {
@@ -499,7 +495,10 @@ a {
   font-weight: 700;
   border: none;
   cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.15s ease,
+    opacity 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .btn:active {
@@ -570,10 +569,18 @@ a {
   letter-spacing: 0.5px;
 }
 
-.rank-1 { color: #f59e0b; }
-.rank-2 { color: #94a3b8; }
-.rank-3 { color: #d97706; }
-.rank-surprise { color: #fbbf24; }
+.rank-1 {
+  color: #f59e0b;
+}
+.rank-2 {
+  color: #94a3b8;
+}
+.rank-3 {
+  color: #d97706;
+}
+.rank-surprise {
+  color: #fbbf24;
+}
 
 .prize-visual {
   width: 72px;
@@ -596,7 +603,7 @@ a {
   font-weight: 700;
   line-height: 1.25;
   margin-bottom: 0.3rem;
-  padding-right: 70px; /* Evita choque con el tag */
+  padding-right: 70px;
 }
 
 .prize-desc {
@@ -619,10 +626,18 @@ a {
   height: 100%;
 }
 
-.icon-blue { color: var(--color-blue); }
-.icon-red { color: var(--color-crimson); }
-.icon-gold { color: var(--color-gold); }
-.icon-pink { color: var(--color-pink); }
+.icon-blue {
+  color: var(--color-blue);
+}
+.icon-red {
+  color: var(--color-crimson);
+}
+.icon-gold {
+  color: var(--color-gold);
+}
+.icon-pink {
+  color: var(--color-pink);
+}
 
 /* ==========================================================================
    STEPS SECTION
@@ -636,7 +651,7 @@ a {
 .step-item {
   display: flex;
   gap: 1.25rem;
-  align-items: center; /* Centrado vertical respecto al bloque de texto */
+  align-items: center;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
@@ -654,7 +669,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  line-height: 1; /* Corrige desfase vertical de la fuente */
+  line-height: 1;
   flex-shrink: 0;
 }
 
@@ -850,7 +865,9 @@ a {
   color: #ffffff;
   font-family: var(--font-body);
   font-size: 0.95rem;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .form-input:focus {
@@ -863,7 +880,6 @@ a {
   color: var(--text-dim);
 }
 
-/* Radio Switch Cards */
 .ticket-switch-group {
   display: flex;
   flex-direction: column;
@@ -901,7 +917,6 @@ a {
   font-size: 0.82rem;
 }
 
-/* Quantity controls */
 .qty-selector {
   display: flex;
   align-items: center;
@@ -955,7 +970,6 @@ a {
   border-color: #ffffff;
 }
 
-/* Summary Box */
 .summary-box {
   background: rgba(0, 0, 0, 0.3);
   border-radius: var(--radius-md);
@@ -990,7 +1004,6 @@ a {
   border-radius: var(--radius-pill);
 }
 
-/* Select Form */
 .form-select {
   background: rgba(0, 0, 0, 0.25);
   border: 1px solid var(--border-subtle);
@@ -1001,7 +1014,6 @@ a {
   font-size: 0.9rem;
 }
 
-/* Treasury Card */
 .treasury-card {
   background: #0f1219;
   border: 1px solid var(--border-active);
@@ -1090,8 +1102,14 @@ a {
 }
 
 @keyframes toast-in {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ==========================================================================
@@ -1124,8 +1142,7 @@ a {
 }
 
 .search-card button {
-  border-radius: 0 0 var(--radius-sm) var(--radius-sm); 
-  
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 
 .input-phone-wrapper {
@@ -1167,9 +1184,17 @@ a {
   font-size: 0.9rem;
   font-weight: 600;
 }
-.search-status.loading { color: var(--color-blue); }
-.search-status.empty { color: var(--color-gold); background: rgba(251, 191, 36, 0.08); }
-.search-status.error { color: var(--color-crimson); background: rgba(229, 26, 46, 0.08); }
+.search-status.loading {
+  color: var(--color-blue);
+}
+.search-status.empty {
+  color: var(--color-gold);
+  background: rgba(251, 191, 36, 0.08);
+}
+.search-status.error {
+  color: var(--color-crimson);
+  background: rgba(229, 26, 46, 0.08);
+}
 
 .results-header-row {
   display: flex;
@@ -1195,7 +1220,6 @@ a {
   gap: 1.5rem;
 }
 
-/* Boleto Digital */
 .digital-ticket-card {
   display: flex;
   background: #0a0c12;
@@ -1280,7 +1304,11 @@ a {
   flex-direction: column;
   justify-content: space-between;
   gap: 0.8rem;
-  background: linear-gradient(135deg, rgba(18, 20, 28, 0.9) 0%, rgba(10, 11, 14, 0.95) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(18, 20, 28, 0.9) 0%,
+    rgba(10, 11, 14, 0.95) 100%
+  );
 }
 
 .ticket-top-row {
@@ -1296,8 +1324,16 @@ a {
   border-radius: var(--radius-pill);
 }
 
-.badge-pink { background: rgba(255, 42, 122, 0.15); color: var(--color-pink); border: 1px solid rgba(255, 42, 122, 0.3); }
-.badge-blue { background: rgba(0, 119, 254, 0.15); color: var(--color-blue); border: 1px solid rgba(0, 119, 254, 0.3); }
+.badge-pink {
+  background: rgba(255, 42, 122, 0.15);
+  color: var(--color-pink);
+  border: 1px solid rgba(255, 42, 122, 0.3);
+}
+.badge-blue {
+  background: rgba(0, 119, 254, 0.15);
+  color: var(--color-blue);
+  border: 1px solid rgba(0, 119, 254, 0.3);
+}
 
 .ticket-transmission-tag {
   font-size: 0.72rem;
@@ -1392,9 +1428,15 @@ a {
   margin-top: 0.25rem;
 }
 
-.blue-txt { color: var(--color-blue); }
-.pink-txt { color: var(--color-pink); }
-.gold-txt { color: var(--color-gold); }
+.blue-txt {
+  color: var(--color-blue);
+}
+.pink-txt {
+  color: var(--color-pink);
+}
+.gold-txt {
+  color: var(--color-gold);
+}
 
 .internal-table-card {
   background: var(--bg-surface);
@@ -1482,8 +1524,14 @@ a {
   font-weight: 700;
 }
 
-.pill-pink { background: rgba(255, 42, 122, 0.15); color: var(--color-pink); }
-.pill-blue { background: rgba(0, 119, 254, 0.15); color: var(--color-blue); }
+.pill-pink {
+  background: rgba(255, 42, 122, 0.15);
+  color: var(--color-pink);
+}
+.pill-blue {
+  background: rgba(0, 119, 254, 0.15);
+  color: var(--color-blue);
+}
 
 .phone-link {
   color: #10b981;
@@ -1502,7 +1550,9 @@ a {
   font-size: 0.8rem;
 }
 
-.table-loading, .table-error, .table-empty {
+.table-loading,
+.table-error,
+.table-empty {
   text-align: center;
   padding: 2rem !important;
   color: var(--text-muted);
@@ -1852,7 +1902,6 @@ a {
   gap: 1.25rem;
 }
 
-/* Dual Counters */
 .dual-counter-grid {
   display: flex;
   flex-direction: column;
@@ -1869,8 +1918,12 @@ a {
   border: 1px solid var(--border-subtle);
 }
 
-.box-pink { border-color: rgba(255, 42, 122, 0.3); }
-.box-blue { border-color: rgba(0, 119, 254, 0.3); }
+.box-pink {
+  border-color: rgba(255, 42, 122, 0.3);
+}
+.box-blue {
+  border-color: rgba(0, 119, 254, 0.3);
+}
 
 .counter-label-group {
   display: flex;
@@ -1882,8 +1935,12 @@ a {
   font-size: 0.95rem;
 }
 
-.box-pink .counter-name { color: var(--color-pink); }
-.box-blue .counter-name { color: var(--color-blue); }
+.box-pink .counter-name {
+  color: var(--color-pink);
+}
+.box-blue .counter-name {
+  color: var(--color-blue);
+}
 
 .counter-rate {
   font-size: 0.78rem;
@@ -1919,7 +1976,6 @@ a {
   line-height: 1;
 }
 
-/* Sale Summary Pill */
 .sale-summary-pill {
   display: flex;
   justify-content: space-between;
@@ -1957,7 +2013,6 @@ a {
   font-size: 0.95rem;
 }
 
-/* Receipt Upload */
 .btn-upload-dropzone {
   display: flex;
   align-items: center;
@@ -2022,14 +2077,11 @@ a {
 }
 
 .hide-scrollbar {
-  /* Firefox */
   scrollbar-width: none;
-  
-  /* Internet Explorer and Legacy Edge */
-  -ms-overflow-style: none;  
+
+  -ms-overflow-style: none;
 }
 
-/* Chrome, Safari, and Opera */
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
