@@ -39,19 +39,19 @@ const TREASURY = {
   "25-2": {
     name: "Christopher Acosta",
     phone: "917862194",
-    method: "Yape / Plin",
+    method: "Yape",
     codeTitle: "Promo 25-2 (Lobo)",
   },
   "26-1": {
     name: "Tesorería 26-1",
     phone: "921584492",
-    method: "Yape / Plin",
+    method: "Yape",
     codeTitle: "Promo 26-1 (Fenix)",
   },
   "26-2": {
     name: "Tesorería 26-2",
     phone: "945416248",
-    method: "Yape / Plin",
+    method: "Yape",
     codeTitle: "Promo 26-2 (Gengar)",
   },
 };
@@ -150,6 +150,55 @@ function initPurchaseModal() {
   const btnPlus = document.getElementById("qty-plus");
   const selectCohort = document.getElementById("select-cohort");
   const btnCopy = document.getElementById("btn-copy-phone");
+  const modalSheet = sheet.querySelector(".modal-sheet");
+  const dragHandle = sheet.querySelector(".sheet-drag-handle");
+  const sheetHeader = sheet.querySelector(".sheet-header");
+
+  let startY = 0;
+  let currentDeltaY = 0;
+  let isDragging = false;
+
+  const onDragStart = (e) => {
+    isDragging = true;
+    startY = e.touches ? e.touches[0].clientY : e.clientY;
+    currentDeltaY = 0;
+    modalSheet.style.transition = "none"; 
+  };
+
+  const onDragMove = (e) => {
+    if (!isDragging) return;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    const deltaY = clientY - startY;
+
+    if (deltaY > 0) {
+      currentDeltaY = deltaY;
+      modalSheet.style.transform = `translateY(${deltaY}px)`;
+      if (e.cancelable) e.preventDefault();
+    }
+  };
+
+  const onDragEnd = () => {
+    if (!isDragging) return;
+    isDragging = false;
+    modalSheet.style.transition = "";
+
+    if (currentDeltaY > 110) {
+      closeModal();
+    } else {
+      modalSheet.style.transform = "";
+    }
+  };
+
+  [dragHandle, sheetHeader].forEach((el) => { // xd
+    if (!el) return;
+    el.addEventListener("touchstart", onDragStart, { passive: true });
+    el.addEventListener("mousedown", onDragStart);
+  });
+
+  window.addEventListener("touchmove", onDragMove, { passive: false });
+  window.addEventListener("mousemove", onDragMove);
+  window.addEventListener("touchend", onDragEnd);
+  window.addEventListener("mouseup", onDragEnd);
 
   function openModal(defaultTier = "premium") {
     state.tier = defaultTier;
@@ -160,6 +209,8 @@ function initPurchaseModal() {
   }
 
   function closeModal() {
+    const modalSheet = sheet.querySelector(".modal-sheet");
+    if (modalSheet) modalSheet.style.transform = "";
     sheet.classList.remove("open");
     sheet.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";

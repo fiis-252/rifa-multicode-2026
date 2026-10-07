@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="dark" class="hide-scrollbar">
   <head>
     <meta charset="UTF-8" />
     <meta
@@ -76,8 +76,8 @@
             <span class="headline-multicode">MULTICODIGO</span>
           </h1>
           <p class="hero-tagline">
-            ¡No te quedes sin tu numero! Apoya a tu promocion y participa por
-            premios oficiales.
+            ¡No te quedes sin tu ticket! Apoya y participa por
+            premios oficiales
           </p>
         </div>
 
@@ -382,8 +382,8 @@
           <div class="step-item">
             <div class="step-number">1</div>
             <div class="step-content">
-              <h4>Elige y Paga vía Yape / Plin</h4>
-              <p>Transfiere a las cuentas oficial de tesoreria de la rifa</p>
+              <h4>Elige y Paga vía Yape</h4>
+              <p>Transfiere a la cuenta de yape de la rifa</p>
             </div>
           </div>
 
@@ -391,7 +391,7 @@
             <div class="step-number">2</div>
             <div class="step-content">
               <h4>Envía tu Comprobante</h4>
-              <p>Al whatsapp destinado</p>
+              <p>Al whatsapp destinado, indicando que tipo de ticket deseas</p>
             </div>
           </div>
 
@@ -412,7 +412,7 @@
     <footer class="app-footer">
       <div class="footer-inner">
         <p class="footer-copy">Gran Rifa Multicodigo FIIS UNI © 2026</p>
-        <p class="footer-sub">Organizado por los codigos 25-2, 26-1 y 26-2.</p>
+        <p class="footer-sub">Organizado por los codigos 25-2, 26-1 y 26-2</p>
         <div class="footer-links">
           <a href="/leaderboard">Tabla de Estadísticas</a>
           <span class="dot-separator">•</span>
@@ -437,38 +437,38 @@
           <div class="sheet-drag-handle"></div>
           <div class="sheet-title-row">
             <h3 class="sheet-title">Adquirir Boletos</h3>
-            <button
+            <!-- <button
               id="btn-close-sheet"
               class="btn-close-icon"
               aria-label="Cerrar modal"
             >
               &times;
-            </button>
+            </button> -->
           </div>
           <p class="sheet-subtitle">
-            Sigue los pasos para enviar tu comprobante a tesorería
+            Sigue los pasos para participar la Gran Rifa Multicodigo 2026
           </p>
         </header>
 
         <div class="sheet-body">
           <div class="form-group">
-            <label class="form-label">1. Tipo de Boleto</label>
+            <label class="form-label">Tipo de Boleto</label>
             <div class="ticket-switch-group">
               <label class="ticket-radio-card active" data-type="premium">
                 <input type="radio" name="modal-tier" value="premium" checked />
-                <span class="radio-label">Boleto Premium (Rosa)</span>
+                <span class="radio-label">Boleto Premium</span>
                 <span class="radio-price">S/ 5.00 • 2 Opciones</span>
               </label>
               <label class="ticket-radio-card" data-type="standard">
                 <input type="radio" name="modal-tier" value="standard" />
-                <span class="radio-label">Boleto Clasico (Azul)</span>
+                <span class="radio-label">Boleto Clasico</span>
                 <span class="radio-price">S/ 3.00 • 1 Opcion</span>
               </label>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="form-label">2. Cantidad de Boletos</label>
+            <label class="form-label">Cantidad de Boletos</label>
             <div class="qty-selector">
               <button type="button" class="btn-qty" id="qty-minus">-</button>
               <span id="qty-display" class="qty-value">1</span>
@@ -501,13 +501,13 @@
 
           <div class="treasury-card">
             <div class="treasury-header">
-              <span class="treasury-tag">Yape / Plin Oficial</span>
-              <span class="treasury-cohort">Tesorería General FIIS</span>
+              <span class="treasury-tag">Yape</span>
+              <span class="treasury-cohort">Rifa Multicodigo 2026</span>
             </div>
             <div class="treasury-data">
-              <p class="treasury-name">Rifa Multicodigo FIIS 2026</p>
+              <p class="treasury-name">Christopher Acosta</p>
               <div class="treasury-phone-box">
-                <span class="treasury-phone">917 862 194</span>
+                <span class="treasury-phone">917862194</span>
                 <button
                   type="button"
                   class="btn-copy-sm"
@@ -527,17 +527,17 @@
             target="_blank"
             rel="noopener"
           >
-            <svg class="wa-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.669-.699c.969.53 1.83.81 2.79.81 3.182 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.768-5.769-5.768zm7.394 5.767c-.002 4.077-3.318 7.393-7.394 7.393-.728 0-1.442-.108-2.12-.321l-3.921 1.028 1.047-3.818c-.469-.81-.716-1.733-.717-2.676.002-4.077 3.32-7.393 7.396-7.393 4.077 0 7.392 3.316 7.394 7.393z"
-              />
-            </svg>
+          <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
+          fill="currentColor" viewBox="0 0 24 24" >
+          <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+          <path fill-rule="evenodd" d="M18.403 5.633A8.92 8.92 0 0 0 12.053 3c-4.948 0-8.976 4.027-8.978 8.977 0 1.582.413 3.126 1.198 4.488L3 21.116l4.759-1.249a9 9 0 0 0 4.29 1.093h.004c4.947 0 8.975-4.027 8.977-8.977a8.93 8.93 0 0 0-2.627-6.35m-6.35 13.812h-.003a7.45 7.45 0 0 1-3.798-1.041l-.272-.162-2.824.741.753-2.753-.177-.282a7.45 7.45 0 0 1-1.141-3.971c.002-4.114 3.349-7.461 7.465-7.461a7.4 7.4 0 0 1 5.275 2.188 7.42 7.42 0 0 1 2.183 5.279c-.002 4.114-3.349 7.462-7.461 7.462m4.093-5.589c-.225-.113-1.327-.655-1.533-.73s-.354-.112-.504.112-.58.729-.711.879-.262.168-.486.056-.947-.349-1.804-1.113c-.667-.595-1.117-1.329-1.248-1.554s-.014-.346.099-.458c.101-.1.224-.262.336-.393s.149-.224.224-.374.038-.281-.019-.393c-.056-.113-.505-1.217-.692-1.666-.181-.435-.366-.377-.504-.383a10 10 0 0 0-.429-.008.83.83 0 0 0-.599.28c-.206.225-.785.767-.785 1.871s.804 2.171.916 2.321 1.582 2.415 3.832 3.387c.536.231.954.369 1.279.473.537.171 1.026.146 1.413.089.431-.064 1.327-.542 1.514-1.066s.187-.973.131-1.067-.207-.151-.43-.263" clip-rule="evenodd"></path>
+          </svg>
             Enviar Comprobante por WhatsApp
           </a>
 
           <p class="sheet-disclaimer">
-            Transfiere el monto exacto por Yape o Plin al numero indicado y dale
-            clic al boton para validar tu compra.
+            Transfiere el monto exacto por Yape al numero indicado y dale
+            clic al boton para validar tu compra
           </p>
         </div>
       </div>

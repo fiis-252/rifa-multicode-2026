@@ -563,7 +563,7 @@ a {
   position: absolute;
   top: 12px;
   right: 14px;
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -599,7 +599,7 @@ a {
 }
 
 .prize-info h3 {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 700;
   line-height: 1.25;
   margin-bottom: 0.3rem;
@@ -800,11 +800,17 @@ a {
 }
 
 .sheet-drag-handle {
-  width: 40px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.2);
+  width: 48px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-pill);
   margin: 0 auto 0.75rem;
+  cursor: grab;
+  touch-action: none; 
+}
+
+.sheet-drag-handle:active {
+  cursor: grabbing;
 }
 
 .sheet-title-row {
