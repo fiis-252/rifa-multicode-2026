@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const badgeCode = document.getElementById("vendor-badge-code");
-  if (badgeCode) badgeCode.innerText = `CODIGO ${vendorCode}`;
+  if (badgeCode) badgeCode.innerText = vendorCode;
 
   const btnCopy = document.getElementById("btn-copy-vendor-phone");
   if (btnCopy) {
     btnCopy.addEventListener("click", () => {
       navigator.clipboard.writeText("917862194").then(() => {
-        showToast("Número 917862194 copiado");
+        showToast("Numero 917862194 copiado");
       });
     });
   }
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (elBlue) elBlue.innerText = qtyBlue;
     if (elTotal) elTotal.innerText = `S/ ${totalAmount}.00`;
     if (elChances) {
-      elChances.innerText = `${totalChances} ${totalChances === 1 ? "Opción" : "Opciones"}`;
+      elChances.innerText = `${totalChances} ${totalChances === 1 ? "Opcion" : "Opciones"}`;
     }
   }
 
@@ -127,7 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const rawPhone = phoneInput.value.replace(/\s+/g, "");
 
     if (rawPhone.length < 9) {
-      showToast("Ingresa un número de celular de 9 dígitos");
+      showToast("Ingresa un numero de celular de 9 dígitos");
       return;
     }
 

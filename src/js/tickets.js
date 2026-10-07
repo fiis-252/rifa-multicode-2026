@@ -83,7 +83,7 @@ function renderTable(tickets) {
         </td>
         <td><strong>${name}</strong></td>
         <td>
-          <a href="https:
+          <a href="https://wa.me/51${phone}" target="_blank">
             ${phone}
           </a>
         </td>

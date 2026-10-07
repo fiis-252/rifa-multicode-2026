@@ -2,7 +2,7 @@ import { apiClient } from "./api.js";
 
 const COHORT_META = {
   "25-2": { label: "Promo 25-2 (Lobo)", color: "#fbbf24", avatar: "🐺" },
-  "26-1": { label: "Promo 26-1 (Fénix)", color: "#e51a2e", avatar: "🦅" },
+  "26-1": { label: "Promo 26-1 (Fenix)", color: "#e51a2e", avatar: "🦅" },
   "26-2": { label: "Promo 26-2 (Gengar)", color: "#8b5cf6", avatar: "👾" },
 };
 
@@ -73,7 +73,7 @@ async function loadStats() {
       const top = data.topVendors.filter((v) => v.sold > 0).slice(0, 10);
 
       if (top.length === 0) {
-        vendorList.innerHTML = `<li style="text-align: center; color: var(--text-dim); padding: 1.5rem;">Aún no hay ventas registradas.</li>`;
+        vendorList.innerHTML = `<li style="text-align: center; color: var(--text-dim); padding: 1.5rem;">Aun no hay ventas registradas.</li>`;
         return;
       }
 

@@ -46,7 +46,7 @@ const TREASURY = {
     name: "Tesorería 26-1",
     phone: "921584492",
     method: "Yape / Plin",
-    codeTitle: "Promo 26-1 (Fénix)",
+    codeTitle: "Promo 26-1 (Fenix)",
   },
   "26-2": {
     name: "Tesorería 26-2",
@@ -63,7 +63,7 @@ const state = {
 };
 
 const PRICES = {
-  standard: { unitPrice: 3, weight: 1, label: "Boleto Azul (Clásico)" },
+  standard: { unitPrice: 3, weight: 1, label: "Boleto Azul (Clasico)" },
   premium: { unitPrice: 5, weight: 2, label: "Boleto Premium (Rosa)" },
 };
 
@@ -93,7 +93,7 @@ function updateCalculatorUI() {
   if (qtyDisplay) qtyDisplay.innerText = state.quantity;
   if (summaryTotal) summaryTotal.innerText = `S/ ${totalPrice}.00`;
   if (summaryChances) {
-    summaryChances.innerText = `${totalChances} ${totalChances === 1 ? "Opción" : "Opciones"}`;
+    summaryChances.innerText = `${totalChances} ${totalChances === 1 ? "Opcion" : "Opciones"}`;
   }
 
   document.querySelectorAll(".ticket-radio-card").forEach((card) => {
@@ -130,10 +130,10 @@ function updateTreasuryAndWhatsApp(totalPrice) {
   const ticketLabel =
     state.tier === "premium"
       ? "Boleto(s) Premium Rosa (S/ 5)"
-      : "Boleto(s) Clásico Azul (S/ 3)";
+      : "Boleto(s) Clasico Azul (S/ 3)";
 
   const msg = encodeURIComponent(
-    `¡Hola! Quiero comprar ${state.quantity} ${ticketLabel} para la Rifa Multicódigo FIIS 2026.\n` +
+    `¡Hola! Quiero comprar ${state.quantity} ${ticketLabel} para la Rifa Multicodigo FIIS 2026.\n` +
       `Monto transferido: S/ ${totalPrice}.00\n` +
       `Adjunto mi comprobante de pago:`,
   );
@@ -222,7 +222,7 @@ function initPurchaseModal() {
   if (btnCopy) {
     btnCopy.addEventListener("click", () => {
       navigator.clipboard.writeText(TREASURY_PHONE).then(() => {
-        showToast(`Número ${TREASURY_PHONE} copiado`);
+        showToast(`Numero ${TREASURY_PHONE} copiado`);
       });
     });
   }

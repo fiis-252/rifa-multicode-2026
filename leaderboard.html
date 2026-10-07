@@ -3,15 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estadísticas & Ranking - Rifa Multicódigo FIIS</title>
+    <title>Estadísticas & Ranking - Rifa Multicodigo FIIS</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-			rel="stylesheet"
-		/>
-		<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./src/css/global.css" />
   </head>
   <body>
@@ -19,19 +22,32 @@
       <div class="header-inner">
         <a href="/" class="brand-group">
           <span class="badge-fiis">FIIS UNI</span>
-          <span class="brand-title">Rifa Multicódigo</span>
+          <span class="brand-title">Rifa Multicodigo</span>
         </a>
         <nav class="header-actions">
-          <a href="/dashboard" class="nav-link-btn">Mi Panel</a>
-          <a href="/" class="nav-link-btn">Inicio</a>
+          <a href="/dashboard" class="nav-link-btn">Venta</a>
+          <a href="/" class="nav-link-btn">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            </svg>
+            <span class="nav-text">Inicio</span>
+          </a>
         </nav>
       </div>
     </header>
 
     <main class="page-container">
       <header class="section-header">
-        <h1 class="section-title">Guerra de Códigos</h1>
-        <p class="section-subtitle">Métricas oficiales de recaudación y participación en tiempo real</p>
+        <h1 class="section-title">Guerra de Codigos</h1>
+        <p class="section-subtitle">
+          Metricas oficiales de recaudacion y participacion en tiempo real
+        </p>
       </header>
 
       <!-- Totales Globales -->
@@ -43,17 +59,19 @@
         </div>
         <div class="summary-divider"></div>
         <div class="summary-stat">
-          <span class="stat-label">Recaudación Estimada</span>
+          <span class="stat-label">Recaudacion Estimada</span>
           <span id="total-revenue" class="stat-number gold-txt">--</span>
-          <span class="stat-sub">Fondo común de rifa</span>
+          <span class="stat-sub">Fondo comun de rifa</span>
         </div>
       </section>
 
       <!-- Batalla Tripartita (25-2 vs 26-1 vs 26-2) -->
       <section class="rivalry-section">
-        <h2 class="subcard-title">Ranking por Promoción</h2>
+        <h2 class="subcard-title">Ranking por Promocion</h2>
         <div id="cohort-bars-container" class="cohort-bars-grid">
-          <p style="text-align: center; color: var(--text-muted);">Cargando posiciones...</p>
+          <p style="text-align: center; color: var(--text-muted)">
+            Cargando posiciones...
+          </p>
         </div>
       </section>
 

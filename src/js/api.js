@@ -1,4 +1,5 @@
-const API_BASE_URL = 'https://devchrisacosta.net/api/rifa-multicode';
+// const API_BASE_URL = 'https://devchrisacosta.net/api/rifa-multicode';
+const API_BASE_URL = 'http://localhost:3000/api/rifa-multicode';
 // console.warn("cambiar a https://devchrisacosta.net/api/rifa-multicode al subir a github -> hostinger")
 
 export const apiClient = {

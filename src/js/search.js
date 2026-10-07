@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const rawPhone = phoneInput.value.replace(/\s+/g, "");
 
     if (rawPhone.length < 9) {
-      showToast("Ingresa un número válido de 9 dígitos");
+      showToast("Ingresa un numero valido de 9 dígitos");
       return;
     }
 
@@ -84,14 +84,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="ticket-body-col">
               <div class="ticket-top-row">
                 <span class="ticket-tier-badge ${isPremium ? "badge-pink" : "badge-blue"}">
-                  ${isPremium ? "★ PREMIO DOBLE (PESO 2)" : "ESTÁNDAR (PESO 1)"}
+                  ${isPremium ? "★ PREMIO DOBLE (PESO 2)" : "ESTaNDAR (PESO 1)"}
                 </span>
                 <span class="ticket-transmission-tag">7:00 PM • En Vivo</span>
               </div>
 
               <div class="ticket-center-brand">
                 <span class="ticket-brand-main">GRAN RIFA</span>
-                <span class="ticket-brand-sub">MULTICÓDIGO</span>
+                <span class="ticket-brand-sub">MULTICoDIGO</span>
               </div>
 
               <div class="ticket-footer-row">
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   </a>
                 `
                     : `
-                  <span class="ticket-verified-tag">✓ Boleto Válido</span>
+                  <span class="ticket-verified-tag">✓ Boleto Valido</span>
                 `
                 }
               </div>
@@ -122,13 +122,13 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         statusEl.className = "search-status empty";
         statusEl.textContent =
-          "No encontramos boletos asociados a este número celular.";
+          "No encontramos boletos asociados a este numero celular.";
       }
     } catch (err) {
       console.error(err);
       statusEl.className = "search-status error";
       statusEl.textContent =
-        "Fallo de conexión al buscar los boletos. Inténtalo nuevamente.";
+        "Fallo de conexion al buscar los boletos. Intentalo nuevamente.";
     } finally {
       btnSearch.disabled = false;
       btnSearch.innerHTML = `

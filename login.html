@@ -2,8 +2,11 @@
 <html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Acceso Delegados - Rifa Multicódigo FIIS</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Acceso Delegados - Rifa Multicodigo FIIS</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,7 +14,10 @@
       href="https://fonts.googleapis.com/css2&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./src/css/global.css" />
   </head>
   <body class="auth-body">
@@ -19,9 +25,20 @@
       <div class="header-inner">
         <a href="/" class="brand-group">
           <span class="badge-fiis">FIIS UNI</span>
-          <span class="brand-title">Rifa Multicódigo</span>
+          <span class="brand-title">Rifa Multicodigo</span>
         </a>
-        <a href="/" class="nav-link-btn">Volver</a>
+        <a href="/" class="nav-link-btn">
+          <svg
+            class="icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+          </svg>
+          <span class="nav-text">Inicio</span>
+        </a>
       </div>
     </header>
 
@@ -29,14 +46,17 @@
       <div class="auth-card">
         <div class="auth-header">
           <span class="auth-shield-badge">Portal Vendedores</span>
-          <h1 class="auth-title">Ingreso de Delegados</h1>
-          <p class="auth-subtitle">Acceso exclusivo para las codigos 25-2, 26-1 y 26-2</p>
+          <h1 class="auth-title">Ingreso de Vendedores</h1>
+          <p class="auth-subtitle">
+            Acceso exclusivo para las codigos 25-2, 26-1 y 26-2
+          </p>
         </div>
 
-        <!-- Formulario 1: Solicitar OTP -->
         <form id="form-request-otp" class="auth-form">
           <div class="form-group">
-            <label for="identifier" class="form-label">Correo Institucional o Código UNI</label>
+            <label for="identifier" class="form-label"
+              >Correo Institucional o Codigo UNI</label
+            >
             <input
               type="text"
               id="identifier"
@@ -47,14 +67,16 @@
             />
           </div>
           <button type="submit" id="btn-request-otp" class="btn btn-primary">
-            Solicitar Código OTP
+            Solicitar Codigo OTP
           </button>
         </form>
 
         <!-- Formulario 2: Verificar OTP (oculto por defecto) -->
-        <form id="form-verify-otp" class="auth-form" style="display: none;">
+        <form id="form-verify-otp" class="auth-form" style="display: none">
           <div class="form-group">
-            <label for="otp" class="form-label">Código de Seguridad (6 dígitos)</label>
+            <label for="otp" class="form-label"
+              >Codigo de Seguridad (6 dígitos)</label
+            >
             <input
               type="text"
               id="otp"
@@ -69,12 +91,20 @@
           <button type="submit" id="btn-verify-otp" class="btn btn-blue">
             Verificar e Ingresar
           </button>
-          <button type="button" id="btn-back-to-request" class="btn-text-action">
-            ← Cambiar correo o código
+          <button
+            type="button"
+            id="btn-back-to-request"
+            class="btn-text-action"
+          >
+            Cambiar correo o codigo
           </button>
         </form>
 
-        <div id="auth-status" class="search-status" style="display: none; margin-top: 1rem;"></div>
+        <div
+          id="auth-status"
+          class="search-status"
+          style="display: none; margin-top: 1rem"
+        ></div>
       </div>
     </main>
 

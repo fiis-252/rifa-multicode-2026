@@ -1,20 +1,20 @@
 import { apiClient } from "./api.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-	const token = localStorage.getItem("vendor_token");
+  const token = localStorage.getItem("vendor_token");
   const exp = localStorage.getItem("vendor_token_exp");
   if (token && exp && Date.now() < Number(exp)) {
     window.location.replace("/dashboard");
     return;
-	}
-	
+  }
+
   const reqForm = document.getElementById("form-request-otp");
   const verifyForm = document.getElementById("form-verify-otp");
   const btnReq = document.getElementById("btn-request-otp");
   const btnVerify = document.getElementById("btn-verify-otp");
   const btnBack = document.getElementById("btn-back-to-request");
   const statusEl = document.getElementById("auth-status");
-	let userIdentifier = "";
+  let userIdentifier = "";
 
   function setStatus(msg, type = "error") {
     statusEl.style.display = "block";
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!userIdentifier) return;
 
       btnReq.disabled = true;
-      btnReq.textContent = "Enviando código...";
+      btnReq.textContent = "Enviando codigo...";
 
       try {
         const res = await apiClient.auth.sendOtp(userIdentifier);
@@ -44,24 +44,24 @@ document.addEventListener("DOMContentLoaded", () => {
           reqForm.style.display = "none";
           verifyForm.style.display = "flex";
           setStatus(
-            "Código enviado. Revisa tu correo institucional.",
+            "Codigo enviado. Revisa tu correo institucional.",
             "loading",
           );
           document.getElementById("otp").focus();
         } else {
           setStatus(
             res?.message ||
-              "Error: Verifica que estés registrado en el padrón de vendedores.",
+              "Error: Verifica que estes registrado en el padron de vendedores.",
           );
         }
       } catch (error) {
         console.error("[auth error]", error);
         setStatus(
-          "Error de conexión con el servidor. Consulta con tu delegado de base.",
+          "Error de conexion con el servidor. Consulta con tu delegado de base.",
         );
       } finally {
         btnReq.disabled = false;
-        btnReq.textContent = "Solicitar Código OTP";
+        btnReq.textContent = "Solicitar Codigo OTP";
       }
     });
   }
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const otpCode = document.getElementById("otp").value.trim();
 
       if (otpCode.length < 6) {
-        setStatus("El código debe tener 6 dígitos.");
+        setStatus("El codigo debe tener 6 dígitos.");
         return;
       }
 
@@ -92,11 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
           window.location.replace("/dashboard");
         } else {
-          setStatus(res?.error || "Código incorrecto o expirado.");
+          setStatus(res?.error || "Codigo incorrecto o expirado.");
         }
       } catch (error) {
         console.error("[auth error]", error);
-        setStatus("Fallo de conexión al verificar el OTP.");
+        setStatus("Fallo de conexion al verificar el OTP.");
       } finally {
         btnVerify.disabled = false;
         btnVerify.textContent = "Verificar e Ingresar";

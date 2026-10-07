@@ -2,8 +2,11 @@
 <html lang="es" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Panel de Ventas - Rifa Multicódigo FIIS</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Panel de Ventas - Rifa Multicodigo FIIS</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,12 +14,14 @@
       href="https://fonts.googleapis.com/css2&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./src/css/global.css" />
     <script src="./src/js/router.js"></script>
   </head>
   <body>
-    <!-- Header Vendedores -->
     <header class="app-header">
       <div class="header-inner">
         <div class="brand-group">
@@ -27,7 +32,24 @@
           <a href="/tickets" class="nav-link-btn" title="Control interno">
             <span class="nav-text">Ver Boletos</span>
           </a>
-          <button id="btn-logout" class="nav-link-btn" title="Cerrar sesión" style="cursor: pointer;">
+          <a href="/" class="nav-link-btn">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            </svg>
+            <span class="nav-text">Inicio</span>
+          </a>
+          <button
+            id="btn-logout"
+            class="nav-link-btn"
+            title="Cerrar sesion"
+            style="cursor: pointer"
+          >
             Salir
           </button>
         </div>
@@ -35,20 +57,21 @@
     </header>
 
     <main class="page-container">
-      <!-- Tarjeta 1: QR Oficial para Escaneo Rápido en Campus -->
       <section class="dashboard-qr-card">
         <div class="qr-header-bar">
           <span class="qr-pill-tag">Yape / Plin Centralizado</span>
-          <span class="qr-sub-tag">Rifa Multicódigo</span>
+          <span class="qr-sub-tag">Rifa Multicodigo</span>
         </div>
 
         <div class="qr-view-container">
-          <!-- Carga el QR central -->
           <img
             src="./assets/imgs/qr/qr-yape-252.png"
             alt="QR Yape Central 917862194"
             class="qr-screen-image"
-            onerror="this.parentElement.innerHTML='<div class=\'qr-fallback-box\'><span>QR 917862194</span></div>'"
+            onerror="
+              this.parentElement.innerHTML =
+                '<div class=\'qr-fallback-box\'><span>QR 917862194</span></div>'
+            "
           />
         </div>
 
@@ -56,34 +79,50 @@
           <p class="qr-titular">Tesorería General FIIS</p>
           <div class="qr-number-row">
             <span class="qr-phone-number">917 862 194</span>
-            <button type="button" id="btn-copy-vendor-phone" class="btn-copy-sm">Copiar</button>
+            <button
+              type="button"
+              id="btn-copy-vendor-phone"
+              class="btn-copy-sm"
+            >
+              Copiar
+            </button>
           </div>
         </div>
       </section>
 
-      <!-- Tarjeta 2: Formulario de Emisión de Boletos -->
       <section class="form-sell-card">
-        <header class="section-header" style="text-align: left; margin-bottom: 1.25rem;">
-          <h2 class="section-title" style="font-size: 1.8rem;">Registrar Venta</h2>
-          <p class="section-subtitle">Ingresa los datos del comprador y emite los boletos oficiales</p>
+        <header
+          class="section-header"
+          style="text-align: left; margin-bottom: 1.25rem"
+        >
+          <h2 class="section-title" style="font-size: 1.8rem">
+            Registrar Venta
+          </h2>
+          <p class="section-subtitle">
+            Ingresa los datos del comprador y emite los boletos oficiales
+          </p>
         </header>
 
         <form id="form-sell-ticket" class="sell-form">
           <div class="form-group">
-            <label for="buyer-name" class="form-label">Nombre del Comprador</label>
+            <label for="buyer-name" class="form-label"
+              >Nombre del Comprador</label
+            >
             <input
               type="text"
               id="buyer-name"
               class="form-input"
               required
-              placeholder="Ej. Gabriel Wei"
+              placeholder="Ej. Daniel Alcantara"
               maxlength="40"
               autocomplete="name"
             />
           </div>
 
           <div class="form-group">
-            <label for="buyer-phone" class="form-label">Teléfono WhatsApp</label>
+            <label for="buyer-phone" class="form-label"
+              >Telefono WhatsApp</label
+            >
             <div class="input-phone-wrapper">
               <span class="country-prefix">+51</span>
               <input
@@ -98,59 +137,78 @@
             </div>
           </div>
 
-          <!-- Selección Dual de Boletos (Azul vs Rosa) -->
           <div class="form-group">
-            <label class="form-label">Selección de Boletos</label>
-            
+            <label class="form-label">Seleccion de Boletos</label>
+
             <div class="dual-counter-grid">
-              <!-- Contador Rosa (Premium S/ 5) -->
               <div class="counter-box box-pink">
                 <div class="counter-label-group">
                   <span class="counter-name">Boleto Premium (Rosa)</span>
                   <span class="counter-rate">S/ 5.00 • 2 Opciones</span>
                 </div>
                 <div class="counter-controls">
-                  <button type="button" class="btn-stepper" id="btn-dec-pink">-</button>
+                  <button type="button" class="btn-stepper" id="btn-dec-pink">
+                    -
+                  </button>
                   <span id="count-pink" class="stepper-val">1</span>
-                  <button type="button" class="btn-stepper" id="btn-inc-pink">+</button>
+                  <button type="button" class="btn-stepper" id="btn-inc-pink">
+                    +
+                  </button>
                 </div>
               </div>
 
-              <!-- Contador Azul (Estándar S/ 3) -->
               <div class="counter-box box-blue">
                 <div class="counter-label-group">
-                  <span class="counter-name">Boleto Clásico (Azul)</span>
-                  <span class="counter-rate">S/ 3.00 • 1 Opción</span>
+                  <span class="counter-name">Boleto Clasico (Azul)</span>
+                  <span class="counter-rate">S/ 3.00 • 1 Opcion</span>
                 </div>
                 <div class="counter-controls">
-                  <button type="button" class="btn-stepper" id="btn-dec-blue">-</button>
+                  <button type="button" class="btn-stepper" id="btn-dec-blue">
+                    -
+                  </button>
                   <span id="count-blue" class="stepper-val">0</span>
-                  <button type="button" class="btn-stepper" id="btn-inc-blue">+</button>
+                  <button type="button" class="btn-stepper" id="btn-inc-blue">
+                    +
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Resumen de Monto a Cobrar -->
           <div class="sale-summary-pill">
             <div class="summary-stat-col">
               <span class="summary-stat-label">Total a Cobrar:</span>
-              <strong id="sale-total-amount" class="summary-stat-amount gold-txt">S/ 5.00</strong>
+              <strong
+                id="sale-total-amount"
+                class="summary-stat-amount gold-txt"
+                >S/ 5.00</strong
+              >
             </div>
             <div class="summary-stat-col text-right">
               <span class="summary-stat-label">Total Opciones:</span>
-              <span id="sale-total-chances" class="summary-chances-txt">2 Opciones</span>
+              <span id="sale-total-chances" class="summary-chances-txt"
+                >2 Opciones</span
+              >
             </div>
           </div>
 
-          <!-- Comprobante de Pago (Voucher) -->
           <div class="form-group" id="receipt-upload-group">
-            <label class="form-label">Comprobante de Pago (Opcional o según base)</label>
-            
+            <label class="form-label"
+              >Comprobante de Pago (Opcional o segun base)</label
+            >
+
             <div class="receipt-picker-container">
               <label for="input-receipt" class="btn-upload-dropzone">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                  ></path>
                   <circle cx="12" cy="13" r="4"></circle>
                 </svg>
                 <span>Adjuntar Voucher / Tomar Foto</span>
@@ -159,22 +217,42 @@
                 type="file"
                 id="input-receipt"
                 accept="image/*"
-                style="display: none;"
+                style="display: none"
               />
 
-              <!-- Preview en Miniatura -->
-              <div id="receipt-preview-box" class="receipt-preview-box" style="display: none;">
-                <img id="receipt-thumb" src="" alt="Voucher" class="receipt-thumb-img" />
+              <div
+                id="receipt-preview-box"
+                class="receipt-preview-box"
+                style="display: none"
+              >
+                <img
+                  id="receipt-thumb"
+                  src=""
+                  alt="Voucher"
+                  class="receipt-thumb-img"
+                />
                 <div class="receipt-meta">
-                  <span id="receipt-file-name" class="receipt-file-name">voucher.jpg</span>
-                  <button type="button" id="btn-remove-receipt" class="btn-remove-thumb">&times; Descartar</button>
+                  <span id="receipt-file-name" class="receipt-file-name"
+                    >voucher.jpg</span
+                  >
+                  <button
+                    type="button"
+                    id="btn-remove-receipt"
+                    class="btn-remove-thumb"
+                  >
+                    &times; Descartar
+                  </button>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Botón de Envío -->
-          <button type="submit" id="btn-submit-sale" class="btn btn-pink" style="margin-top: 0.5rem;">
+          <button
+            type="submit"
+            id="btn-submit-sale"
+            class="btn btn-pink"
+            style="margin-top: 0.5rem"
+          >
             Confirmar y Emitir Boletos
           </button>
         </form>
