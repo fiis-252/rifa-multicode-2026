@@ -1,9 +1,21 @@
 import { apiClient } from "./api.js";
 
 const COHORT_META = {
-  "25-2": { label: "Promo 25-2 (Lobo)", color: "#fbbf24", avatar: "🐺" },
-  "26-1": { label: "Promo 26-1 (Fenix)", color: "#e51a2e", avatar: "🦅" },
-  "26-2": { label: "Promo 26-2 (Gengar)", color: "#8b5cf6", avatar: "👾" },
+  "25-2": {
+    label: "Codigo 25-2",
+    color: "#fbbf24",
+    avatar: "assets/imgs/logo/logo_252.jpeg",
+  },
+  "26-1": {
+    label: "Codigo 26-1",
+    color: "#e51a2e",
+    avatar: "assets/imgs/logo/logo_261.jpeg",
+  },
+  "26-2": {
+    label: "Codigo 26-2",
+    color: "#8b5cf6",
+    avatar: "assets/imgs/logo/logo_262.jpeg",
+  },
 };
 
 async function loadStats() {
@@ -21,7 +33,7 @@ async function loadStats() {
     const total = data.total || 0;
     if (totalTicketsEl) totalTicketsEl.innerText = total;
     if (soldSubTxt) {
-      soldSubTxt.innerText = `${total} boleto${total === 1 ? "" : "s"} emitido${total === 1 ? "" : "s"}`;
+      soldSubTxt.innerText = `${total} ticket${total === 1 ? "" : "s"} emitido${total === 1 ? "" : "s"}`;
     }
 
     const revenue =
@@ -40,7 +52,7 @@ async function loadStats() {
           code,
           count: data.codes[code] || 0,
           meta: COHORT_META[code] || {
-            label: `Promo ${code}`,
+            label: `Codigo ${code}`,
             color: "var(--color-blue)",
             avatar: "🎟️",
           },
@@ -56,9 +68,9 @@ async function loadStats() {
         card.innerHTML = `
           <div class="cohort-bar-info">
             <span class="cohort-rank">#${index + 1}</span>
-            <span class="cohort-avatar-mini">${item.meta.avatar}</span>
+            <img class="cohort-avatar-mini" style="border: 1px solid ${item.meta.color}" src="${item.meta.avatar}"></img>
             <strong class="cohort-title-txt">${item.meta.label}</strong>
-            <span class="cohort-score-badge">${item.count} boletos</span>
+            <span class="cohort-score-badge">${item.count} tickets</span>
           </div>
           <div class="progress-track">
             <div class="progress-fill" style="width: ${percent}%; background: ${item.meta.color};"></div>

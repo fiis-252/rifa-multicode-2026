@@ -63,8 +63,8 @@ const state = {
 };
 
 const PRICES = {
-  standard: { unitPrice: 3, weight: 1, label: "Boleto Azul (Clasico)" },
-  premium: { unitPrice: 5, weight: 2, label: "Boleto Premium (Rosa)" },
+  standard: { unitPrice: 3, weight: 1, label: "Ticket Azul (Clasico)" },
+  premium: { unitPrice: 5, weight: 2, label: "Ticket Premium (Rosa)" },
 };
 
 function showToast(message) {
@@ -124,22 +124,23 @@ function resolveCohort() {
 }
 
 const TREASURY_PHONE = "917862194";
+const RECEIVER_PHONE = "929644750";
 
 function updateTreasuryAndWhatsApp(totalPrice) {
   const btnWa = document.getElementById("btn-whatsapp-send");
   const ticketLabel =
     state.tier === "premium"
-      ? "Boleto(s) Premium Rosa (S/ 5)"
-      : "Boleto(s) Clasico Azul (S/ 3)";
+      ? `ticket${state.quantity != 1 ? "s" : ""} Premium Rosa (S/ 5)`
+      : `ticket${state.quantity != 1 ? "s" : ""} Clasico Azul (S/ 3)`;
 
   const msg = encodeURIComponent(
-    `¡Hola! Quiero comprar ${state.quantity} ${ticketLabel} para la Rifa Multicodigo FIIS 2026.\n` +
-      `Monto transferido: S/ ${totalPrice}.00\n` +
+    `¡Hola! Quiero comprar ${state.quantity} ${ticketLabel} para la Rifa Multicodigo FIIS 2026\n` +
+      `Monto yapeado: S/ ${totalPrice}.00\n` +
       `Adjunto mi comprobante de pago:`,
   );
 
   if (btnWa) {
-    btnWa.href = `https://wa.me/51${TREASURY_PHONE}?text=${msg}`;
+    btnWa.href = `https://wa.me/51${RECEIVER_PHONE}?text=${msg}`;
   }
 }
 
@@ -162,7 +163,7 @@ function initPurchaseModal() {
     isDragging = true;
     startY = e.touches ? e.touches[0].clientY : e.clientY;
     currentDeltaY = 0;
-    modalSheet.style.transition = "none"; 
+    modalSheet.style.transition = "none";
   };
 
   const onDragMove = (e) => {
@@ -189,7 +190,8 @@ function initPurchaseModal() {
     }
   };
 
-  [dragHandle, sheetHeader].forEach((el) => { // xd
+  [dragHandle, sheetHeader].forEach((el) => {
+    // xd
     if (!el) return;
     el.addEventListener("touchstart", onDragStart, { passive: true });
     el.addEventListener("mousedown", onDragStart);

@@ -8,6 +8,22 @@
     />
     <title>Panel de Ventas - Rifa Multicodigo FIIS</title>
 
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="./assets/imgs/logo/raffle_logo.jpeg"
+    />
+    <link rel="apple-touch-icon" href="./assets/imgs/logo/raffle_logo.jpeg" />
+
+    <meta property="og:title" content="Gran Rifa Multicódigo FIIS 2026" />
+    <meta property="og:description" content="Panel de Ventas" />
+    <meta
+      property="og:image"
+      content="https://rifa-multicode-2026-xi.vercel.app/assets/imgs/logo/raffle_logo.jpeg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:type" content="website" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,19 +34,27 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="/assets/raffle_logo.ico" />
     <link rel="stylesheet" href="./src/css/global.css" />
     <script src="./src/js/router.js"></script>
   </head>
   <body>
     <header class="app-header">
       <div class="header-inner">
-        <div class="brand-group">
-          <span class="badge-fiis" id="vendor-badge-code">FIIS</span>
-          <span class="brand-title">Registro de Venta</span>
-        </div>
+        <a href="/" class="brand-group">
+          <img
+            src="./assets/imgs/logo/raffle_logo_alt.jpeg"
+            alt="Logo Rifa"
+            class="brand-logo-img"
+          />
+          <div class="brand-text-col">
+            <span class="badge-fiis">FIIS UNI</span>
+            <span class="brand-title">Rifa Multicódigo</span>
+          </div>
+        </a>
         <div class="header-actions">
           <a href="/tickets" class="nav-link-btn" title="Control interno">
-            <span class="nav-text">Ver Boletos</span>
+            <span class="nav-text">Ver Tickets</span>
           </a>
           <a href="/" class="nav-link-btn">
             <svg
@@ -57,6 +81,43 @@
     </header>
 
     <main class="page-container">
+      <!-- Métricas Personales del Vendedor -->
+      <section class="vendor-summary-bar">
+        <div class="vendor-stat-pill">
+          <span class="vstat-label">Mis Tickets</span>
+          <span id="vstat-tickets-count" class="vstat-num">--</span>
+        </div>
+        <div class="vendor-stat-pill">
+          <span class="vstat-label">Mi Recaudación</span>
+          <span id="vstat-revenue-count" class="vstat-num gold-txt">S/ --</span>
+        </div>
+        <div class="vendor-stat-pill">
+          <span class="vstat-label">Rosas / Azules</span>
+          <div
+            id="vstat-breakdown"
+            class="vstat-num"
+            style="font-size: 1.4rem; display: flex; flex-direction: row"
+          >
+            <span id="vstat-breakdown-pink" style="color: var(--color-pink)"
+              >--</span
+            >
+            <span>/</span>
+            <span id="vstat-breakdown-blue" style="color: var(--color-blue)"
+              >--</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- Selector de Pestañas (Tabs) -->
+      <nav class="dashboard-tabs">
+        <button type="button" class="tab-btn active" id="tab-btn-sell">
+          Emitir Venta
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-history">
+          Mis Ventas (<span id="tab-history-count">0</span>)
+        </button>
+      </nav>
       <section class="dashboard-qr-card">
         <div class="qr-header-bar">
           <span class="qr-pill-tag">Yape</span>
@@ -76,7 +137,7 @@
         </div>
 
         <div class="qr-account-info">
-          <p class="qr-titular">Tesorería General FIIS</p>
+          <p class="qr-titular">Christopher Acosta</p>
           <div class="qr-number-row">
             <span class="qr-phone-number">917 862 194</span>
             <button
@@ -99,7 +160,7 @@
             Registrar Venta
           </h2>
           <p class="section-subtitle">
-            Ingresa los datos del comprador y emite los boletos oficiales
+            Ingresa los datos del comprador y emite ticket
           </p>
         </header>
 
@@ -138,12 +199,12 @@
           </div>
 
           <div class="form-group">
-            <label class="form-label">Seleccion de Boletos</label>
+            <label class="form-label">Seleccion de Tickets</label>
 
             <div class="dual-counter-grid">
               <div class="counter-box box-pink">
                 <div class="counter-label-group">
-                  <span class="counter-name">Boleto Premium (Rosa)</span>
+                  <span class="counter-name">Ticket Premium</span>
                   <span class="counter-rate">S/ 5.00 • 2 Opciones</span>
                 </div>
                 <div class="counter-controls">
@@ -159,7 +220,7 @@
 
               <div class="counter-box box-blue">
                 <div class="counter-label-group">
-                  <span class="counter-name">Boleto Clasico (Azul)</span>
+                  <span class="counter-name">Ticket Clasico</span>
                   <span class="counter-rate">S/ 3.00 • 1 Opcion</span>
                 </div>
                 <div class="counter-controls">
@@ -253,9 +314,26 @@
             class="btn btn-pink"
             style="margin-top: 0.5rem"
           >
-            Confirmar y Emitir Boletos
+            Confirmar y Emitir Tickets
           </button>
         </form>
+      </section>
+      <section
+        id="view-history"
+        class="history-view-card"
+        style="display: none"
+      >
+        <div class="history-header">
+          <h2 class="section-title" style="font-size: 1.6rem">
+            Historial de Mis Ventas
+          </h2>
+          <span class="section-subtitle">Tickets emitidos desde tu cuenta</span>
+        </div>
+        <div id="vendor-history-list" class="vendor-history-list">
+          <p style="text-align: center; color: var(--text-dim); padding: 2rem">
+            Cargando tus ventas...
+          </p>
+        </div>
       </section>
     </main>
 

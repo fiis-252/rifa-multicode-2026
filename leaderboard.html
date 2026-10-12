@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Estadísticas & Ranking - Rifa Multicodigo FIIS</title>
 
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="./assets/imgs/logo/raffle_logo.jpeg"
+    />
+    <link rel="apple-touch-icon" href="./assets/imgs/logo/raffle_logo.jpeg" />
+
+    <meta property="og:title" content="Gran Rifa Multicódigo FIIS 2026" />
+    <meta property="og:description" content="Ranking de codigos" />
+    <meta
+      property="og:image"
+      content="https://rifa-multicode-2026-xi.vercel.app/assets/imgs/logo/raffle_logo.jpeg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:type" content="website" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,14 +31,22 @@
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"
       rel="stylesheet"
     />
+    <link rel="icon" type="image/x-icon" href="/assets/raffle_logo.ico" />
     <link rel="stylesheet" href="./src/css/global.css" />
   </head>
   <body>
     <header class="app-header">
       <div class="header-inner">
         <a href="/" class="brand-group">
-          <span class="badge-fiis">FIIS UNI</span>
-          <span class="brand-title">Rifa Multicodigo</span>
+          <img
+            src="./assets/imgs/logo/raffle_logo_alt.jpeg"
+            alt="Logo Rifa"
+            class="brand-logo-img"
+          />
+          <div class="brand-text-col">
+            <span class="badge-fiis">FIIS UNI</span>
+            <span class="brand-title">Rifa Multicódigo</span>
+          </div>
         </a>
         <nav class="header-actions">
           <a href="/dashboard" class="nav-link-btn">Venta</a>
@@ -45,14 +69,12 @@
     <main class="page-container">
       <header class="section-header">
         <h1 class="section-title">Ranking de Codigos</h1>
-        <p class="section-subtitle">
-          Metricas oficiales de recaudacion y participacion
-        </p>
+        <p class="section-subtitle">Metricas de recaudacion y participacion</p>
       </header>
 
       <section class="leaderboard-summary-card">
         <div class="summary-stat">
-          <span class="stat-label">Total Boletos Vendidos</span>
+          <span class="stat-label">Total Tickets Vendidos</span>
           <span id="total-tickets" class="stat-number">--</span>
           <span class="stat-sub" id="amt-tks-sold-txt">calculando...</span>
         </div>
@@ -74,7 +96,7 @@
       </section>
 
       <section class="top-vendors-section">
-        <h2 class="subcard-title">Top 10 Delegados Vendedores</h2>
+        <h2 class="subcard-title">Top 10 Vendedores</h2>
         <div class="vendors-card">
           <ul id="top-vendors-list" class="vendors-list">
             <li class="table-loading">Calculando posiciones...</li>

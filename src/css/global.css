@@ -1,6 +1,3 @@
-/* ==========================================================================
-   DESIGN TOKENS & ROOTS (Basado en la identidad del boleto físico)
-   ========================================================================== */
 :root {
   --bg-base: #0a0b0e;
   --bg-surface: #12141c;
@@ -97,6 +94,21 @@ a {
   letter-spacing: -0.3px;
 }
 
+.brand-logo-img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border-active);
+  object-fit: cover;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.brand-text-col {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -145,7 +157,7 @@ a {
   padding: 1.5rem 1.25rem 3rem;
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
+  gap: 2.5rem;
 }
 
 .section-header {
@@ -222,6 +234,21 @@ a {
   flex-direction: column;
   align-items: center;
   line-height: 0.88;
+}
+
+.hero-emblem-wrap {
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-emblem-img {
+  width: 95px;
+  height: 95px;
+  border-radius: 50%;
+  border: 2px solid rgba(229, 26, 46, 0.4);
+  box-shadow: 0 0 25px rgba(229, 26, 46, 0.25), 0 8px 20px rgba(0, 0, 0, 0.7);
+  object-fit: cover;
 }
 
 .headline-brush {
@@ -806,7 +833,7 @@ a {
   border-radius: var(--radius-pill);
   margin: 0 auto 0.75rem;
   cursor: grab;
-  touch-action: none; 
+  touch-action: none;
 }
 
 .sheet-drag-handle:active {
@@ -1138,7 +1165,7 @@ a {
 }
 
 /* ==========================================================================
-   DIGITAL TICKET (Replica del Boleto Físico)
+   DIGITAL TICKET (Replica del Ticket Físico)
    ========================================================================== */
 .search-card {
   background: var(--bg-surface);
@@ -1675,7 +1702,7 @@ a {
   font-family: var(--font-display);
   font-size: 3rem;
   line-height: 1;
-  color: #fff;
+  /* color: #fff; */
   margin: 0.25rem 0;
 }
 
@@ -1721,16 +1748,23 @@ a {
 
 .cohort-rank {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 3rem;
   color: var(--text-dim);
+  width: 4rem;
 }
 
 .cohort-avatar-mini {
-  font-size: 1.2rem;
+  height: 4rem;
+  border-radius: 50%;
 }
 
 .cohort-title-txt {
-  font-size: 0.95rem;
+  padding: .8rem;
+  /* border: 1px solid #fff; */
+  border-radius: 2rem;
+  width: auto;
+  /* box-shadow: 0 0 20px #0000ff; */
+  font-size: 1.4rem;
   flex-grow: 1;
 }
 
@@ -2090,4 +2124,193 @@ a {
 
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+
+/* ==========================================================================
+   RENDERED TICKET DISPLAY (search.html)
+   ========================================================================== */
+.rendered-ticket-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-active);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.rendered-ticket-img-box {
+  width: 100%;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rendered-ticket-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.rendered-ticket-toolbar {
+  padding: 1rem 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  background: var(--bg-surface-elevated);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.ticket-meta-info {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.ticket-num-badge {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.btn-download-action {
+  width: auto;
+  padding: 0.55rem 1rem;
+  font-size: 0.85rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: #fff;
+}
+
+.btn-download-action:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+
+/* ==========================================================================
+   VENDOR METRICS & HISTORY TABS (dashboard.html)
+   ========================================================================== */
+.vendor-summary-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.vendor-stat-pill {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.vstat-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.vstat-num {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  line-height: 1;
+  gap: .3rem;
+  margin-top: 0.25rem;
+}
+
+.vstat-num span{
+  font-size: 1.8rem;
+}
+
+.dashboard-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.35rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+}
+
+.tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.65rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background: var(--bg-surface-elevated);
+  color: #fff;
+  border: 1px solid var(--border-active);
+}
+
+.history-view-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.vendor-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1rem;
+}
+
+.vendor-history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+}
+
+.vhist-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.vhist-num {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-crimson);
+}
+
+.vhist-buyer {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.vhist-buyer small {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+}
+
+.vhist-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.25rem;
+}
+
+.vhist-time {
+  font-size: 0.72rem;
+  color: var(--text-dim);
 }

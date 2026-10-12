@@ -9,7 +9,7 @@ async function loadTickets() {
   const mPink = document.getElementById("metric-pink-count");
   const mMoney = document.getElementById("metric-total-money");
 
-  tbody.innerHTML = `<tr><td colspan="6" class="table-loading">Obteniendo boletos...</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="6" class="table-loading">obteniendo tickets...</td></tr>`;
 
   try {
     const res = await apiClient.request("/tickets");
@@ -19,7 +19,7 @@ async function loadTickets() {
     renderTable(cachedTickets);
   } catch (err) {
     console.error(err);
-    tbody.innerHTML = `<tr><td colspan="6" class="table-error">Error al cargar boletos del servidor.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" class="table-error">error al cargar tickets</td></tr>`;
   }
 }
 
@@ -51,7 +51,7 @@ function renderTable(tickets) {
   if (!tbody) return;
 
   if (tickets.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="table-empty">No se encontraron boletos registrados.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="6" class="table-empty">No se encontraron tickets registrados.</td></tr>`;
     return;
   }
 

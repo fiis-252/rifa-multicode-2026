@@ -47,71 +47,60 @@ document.addEventListener("DOMContentLoaded", () => {
     ticketsGrid.innerHTML = "";
     statusEl.style.display = "block";
     statusEl.className = "search-status loading";
-    statusEl.textContent = "Consultando base de datos oficial...";
+    statusEl.textContent = "consultando...";
 
     try {
       const data = await apiClient.request(`/tickets/search/${rawPhone}`);
 
       if (data && data.success && data.tickets && data.tickets.length > 0) {
         statusEl.style.display = "none";
-        resultsCount.textContent = `${data.tickets.length} Boleto${data.tickets.length === 1 ? "" : "s"} Registrado${data.tickets.length === 1 ? "" : "s"}`;
+        resultsCount.textContent = `${data.tickets.length} Ticket${data.tickets.length === 1 ? "" : "s"} Registrado${data.tickets.length === 1 ? "" : "s"}`;
 
         data.tickets.forEach((ticket, idx) => {
           const ticketNumber =
             ticket.ticketNumber ||
             ticket.number ||
             String(idx + 1).padStart(4, "0");
-          const buyerName = ticket.buyerName || ticket.name || "Participante";
-          const isPremium =
-            ticket.tier === "premium" ||
-            ticket.type === "premium" ||
-            ticket.weight === 2;
+          const isPremium = ticket.tier === "premium" || ticket.weight === 2;
 
           const ticketCard = document.createElement("div");
-          ticketCard.className = `digital-ticket-card ${isPremium ? "ticket-premium" : "ticket-standard"}`;
+          ticketCard.className = "rendered-ticket-card";
 
           ticketCard.innerHTML = `
-            <div class="ticket-stub-col">
-              <div class="stub-red-box">
-                <span class="stub-hash">#</span>
-                <span class="stub-number">${ticketNumber}</span>
-              </div>
-              <span class="stub-draw-date">Sorteo: 29 de Octubre</span>
+            <div class="rendered-ticket-img-box">
+              ${
+                ticket.image
+                  ? `
+                <img src="${ticket.image}" alt="Ticket ${ticketNumber}" class="rendered-ticket-img" />
+              `
+                  : `
+                <div class="ticket-img-fallback">Ticket #${ticketNumber} (generando vista previa...)</div>
+              `
+              }
             </div>
 
-            <div class="ticket-perforation-divider"></div>
-
-            <div class="ticket-body-col">
-              <div class="ticket-top-row">
-                <span class="ticket-tier-badge ${isPremium ? "badge-pink" : "badge-blue"}">
-                  ${isPremium ? "★ PREMIO DOBLE (PESO 2)" : "ESTaNDAR (PESO 1)"}
+            <div class="rendered-ticket-toolbar">
+              <div class="ticket-meta-info">
+                <span class="ticket-num-badge">#${ticketNumber}</span>
+                <span class="type-pill ${isPremium ? "pill-pink" : "pill-blue"}">
+                  ${isPremium ? "★ Doble Chance" : "Estándar"}
                 </span>
-                <span class="ticket-transmission-tag">7:00 PM • En Vivo</span>
               </div>
 
-              <div class="ticket-center-brand">
-                <span class="ticket-brand-main">GRAN RIFA</span>
-                <span class="ticket-brand-sub">MULTICoDIGO</span>
-              </div>
-
-              <div class="ticket-footer-row">
-                <div class="ticket-owner-info">
-                  <span class="owner-label">Comprador</span>
-                  <strong class="owner-name">${buyerName}</strong>
-                </div>
-
-                ${
-                  ticket.image
-                    ? `
-                  <a href="${ticket.image}" download="Boleto-${ticketNumber}.png" class="btn-download-ticket" title="Descargar imagen">
-                    Descargar
-                  </a>
-                `
-                    : `
-                  <span class="ticket-verified-tag">✓ Boleto Valido</span>
-                `
-                }
-              </div>
+              ${
+                ticket.image
+                  ? `
+                <a href="${ticket.image}" download="${ticketNumber}.png" class="btn btn-download-action">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                  </svg>
+                  Descargar Imagen
+                </a>
+              `
+                  : ""
+              }
             </div>
           `;
 
@@ -122,13 +111,13 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         statusEl.className = "search-status empty";
         statusEl.textContent =
-          "No encontramos boletos asociados a este numero celular.";
+          "No encontramos tickets asociados a este numero celular.";
       }
     } catch (err) {
       console.error(err);
       statusEl.className = "search-status error";
       statusEl.textContent =
-        "Fallo de conexion al buscar los boletos. Intentalo nuevamente.";
+        "Fallo de conexion al buscar los tickets. Intentalo nuevamente.";
     } finally {
       btnSearch.disabled = false;
       btnSearch.innerHTML = `
@@ -136,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        Consultar Mis Boletos
+        Consultar Mis Tickets
       `;
     }
   });

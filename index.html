@@ -8,6 +8,25 @@
     />
     <title>Gran Rifa Multicodigo FIIS 2026 | 25-2 • 26-1 • 26-2</title>
 
+    <link
+      rel="icon"
+      type="image/jpeg"
+      href="./assets/imgs/logo/raffle_logo.jpeg"
+    />
+    <link rel="apple-touch-icon" href="./assets/imgs/logo/raffle_logo.jpeg" />
+
+    <meta property="og:title" content="Gran Rifa Multicódigo FIIS 2026" />
+    <meta
+      property="og:description"
+      content="Participa por una Tablet, Powerbank Xiaomi + Mochila UNI, combos y premios oficiales. Sorteo en vivo: 29 de octubre."
+    />
+    <meta
+      property="og:image"
+      content="https://rifa-multicode-2026-xi.vercel.app/assets/imgs/logo/raffle_logo.jpeg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:type" content="website" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -19,17 +38,26 @@
       rel="stylesheet"
     />
 
+    <link rel="icon" type="image/x-icon" href="/assets/raffle_logo.ico" />
+
     <link rel="stylesheet" href="./src/css/global.css" />
   </head>
   <body>
     <header class="app-header">
       <div class="header-inner">
-        <div class="brand-group">
-          <span class="badge-fiis">FIIS UNI</span>
-          <span class="brand-title">Rifa Multicodigo</span>
-        </div>
+        <a href="/" class="brand-group">
+          <img
+            src="./assets/imgs/logo/raffle_logo_alt.jpeg"
+            alt="Logo Rifa"
+            class="brand-logo-img"
+          />
+          <div class="brand-text-col">
+            <span class="badge-fiis">FIIS UNI</span>
+            <span class="brand-title">Rifa Multicódigo</span>
+          </div>
+        </a>
         <nav class="header-actions">
-          <a href="/search" class="nav-link-btn" title="Buscar mis boletos">
+          <a href="/search" class="nav-link-btn" title="Buscar mis tickets">
             <svg
               class="icon"
               viewBox="0 0 24 24"
@@ -40,7 +68,7 @@
               <circle cx="11" cy="11" r="8"></circle>
               <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <span class="nav-text">Mis Boletos</span>
+            <span class="nav-text">Mis Tickets</span>
           </a>
           <a
             href="/login"
@@ -70,19 +98,25 @@
           <span>TRANSMISION EN VIVO • 29 DE OCTUBRE • 7:00 PM</span>
         </div>
 
+        <div class="hero-emblem-wrap">
+          <img src="./assets/imgs/logo/raffle_logo_alt.jpeg" alt="Gran Rifa FIIS 2026" class="hero-emblem-img" />
+        </div>
+
         <div class="hero-title-group">
           <h1 class="hero-headline">
             <span class="headline-brush">GRAN RIFA</span>
             <span class="headline-multicode">MULTICODIGO</span>
           </h1>
           <p class="hero-tagline">
-            ¡No te quedes sin tu ticket! Apoya y participa por
-            premios oficiales
+            ¡No te quedes sin tu ticket! Apoya y participa por premios oficiales
           </p>
         </div>
 
         <div class="cohorts-strip">
-          <div class="cohort-item">
+          <a
+            href="https://www.instagram.com/fiiscodigo252/"
+            class="cohort-item"
+          >
             <div class="cohort-avatar avatar-wolf">
               <img
                 src="./assets/imgs/logo/logo_252.jpeg"
@@ -95,9 +129,9 @@
               <span class="cohort-fallback">25-2</span>
             </div>
             <span class="cohort-name">25-2</span>
-          </div>
+          </a>
 
-          <div class="cohort-item">
+          <a class="cohort-item">
             <div class="cohort-avatar avatar-phoenix">
               <img
                 src="./assets/imgs/logo/logo_261.jpeg"
@@ -110,9 +144,9 @@
               <span class="cohort-fallback">26-1</span>
             </div>
             <span class="cohort-name">26-1</span>
-          </div>
+          </a>
 
-          <div class="cohort-item">
+          <a class="cohort-item">
             <div class="cohort-avatar avatar-gengar">
               <img
                 src="./assets/imgs/logo/logo_262.jpeg"
@@ -125,7 +159,7 @@
               <span class="cohort-fallback">26-2</span>
             </div>
             <span class="cohort-name">26-2</span>
-          </div>
+          </a>
         </div>
 
         <div class="countdown-card">
@@ -154,11 +188,11 @@
         </div>
       </section>
 
-      <section class="section-pricing" id="seccion-boletos">
+      <section class="section-pricing">
         <header class="section-header">
-          <h2 class="section-title">Elige tu Tipo de Boleto</h2>
+          <h2 class="section-title">Elige tu Tipo de Ticket</h2>
           <p class="section-subtitle">
-            Asegura tus opciones en el bolillero oficial del sorteo
+            Asegura tus opciones en el sorteo de la rifa
           </p>
         </header>
 
@@ -166,7 +200,7 @@
           <article class="tier-card tier-card-blue">
             <div class="tier-header">
               <span class="tier-chip chip-blue">Estandar</span>
-              <h3 class="tier-name">Boleto Azul</h3>
+              <h3 class="tier-name">Ticket Azul</h3>
             </div>
             <div class="tier-price-box">
               <span class="currency">S/</span>
@@ -192,14 +226,14 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-                <span>Boleto digital descargable</span>
+                <span>Ticket digital descargable</span>
               </li>
             </ul>
             <button
               class="btn btn-blue js-open-purchase"
               data-ticket="standard"
             >
-              Comprar Boleto Azul
+              Comprar Ticket Azul
             </button>
           </article>
 
@@ -207,7 +241,7 @@
             <div class="featured-ribbon">MAS POPULAR</div>
             <div class="tier-header">
               <span class="tier-chip chip-pink">Doble Chance</span>
-              <h3 class="tier-name">Boleto Premium</h3>
+              <h3 class="tier-name">Ticket Premium</h3>
             </div>
             <div class="tier-price-box">
               <span class="currency">S/</span>
@@ -243,11 +277,11 @@
                     clip-rule="evenodd"
                   />
                 </svg>
-                <span>Boleto digital Premium con distintivo</span>
+                <span>Ticket digital Premium con distintivo</span>
               </li>
             </ul>
             <button class="btn btn-pink js-open-purchase" data-ticket="premium">
-              Comprar Boleto Premium
+              Comprar Ticket Premium
             </button>
           </article>
         </div>
@@ -282,7 +316,7 @@
             <div class="prize-info">
               <h3>Tablet + Teclado</h3>
               <p class="prize-desc">
-                Conexion 3G, Android 11, funda y teclado inalambrico incluido.
+                Conexion 3G, Android 11, funda y teclado inalambrico incluido
               </p>
             </div>
           </article>
@@ -308,7 +342,7 @@
               <h3>Powerbank Xiaomi 20,000 mAh + Mochila UNI</h3>
               <p class="prize-desc">
                 Carga rapida 18W Redmi + Mochila portatodo con bordado
-                institucional UNI.
+                institucional UNI
               </p>
             </div>
           </article>
@@ -334,7 +368,7 @@
               <h3>Lonchera Electrica + Gorra UNI</h3>
               <p class="prize-desc">
                 Portatil termica con enchufe para calentar + Gorra oficial
-                bordada UNI.
+                bordada UNI
               </p>
             </div>
           </article>
@@ -398,7 +432,7 @@
           <div class="step-item">
             <div class="step-number">3</div>
             <div class="step-content">
-              <h4>Recibe tus Boletos Oficiales</h4>
+              <h4>Recibe tus Tickets</h4>
               <p>
                 Se registrara tu compra y se te enviara tu ticket virtual de la
                 rifa
@@ -416,7 +450,7 @@
         <div class="footer-links">
           <a href="/leaderboard">Tabla de Estadísticas</a>
           <span class="dot-separator">•</span>
-          <a href="/search">Recuperar Boletos</a>
+          <a href="/search">Recuperar Tickets</a>
         </div>
       </div>
     </footer>
@@ -427,7 +461,7 @@
         <span class="preview-amount">S/ 3.00</span>
       </div>
       <button class="btn btn-primary js-open-purchase" data-ticket="premium">
-        Comprar Boletos
+        Comprar Tickets
       </button>
     </aside>
 
@@ -436,7 +470,7 @@
         <header class="sheet-header">
           <div class="sheet-drag-handle"></div>
           <div class="sheet-title-row">
-            <h3 class="sheet-title">Adquirir Boletos</h3>
+            <h3 class="sheet-title">Adquirir Tickets</h3>
             <!-- <button
               id="btn-close-sheet"
               class="btn-close-icon"
@@ -452,23 +486,23 @@
 
         <div class="sheet-body">
           <div class="form-group">
-            <label class="form-label">Tipo de Boleto</label>
+            <label class="form-label">Tipo de Ticket</label>
             <div class="ticket-switch-group">
               <label class="ticket-radio-card active" data-type="premium">
                 <input type="radio" name="modal-tier" value="premium" checked />
-                <span class="radio-label">Boleto Premium</span>
+                <span class="radio-label">Ticket Premium</span>
                 <span class="radio-price">S/ 5.00 • 2 Opciones</span>
               </label>
               <label class="ticket-radio-card" data-type="standard">
                 <input type="radio" name="modal-tier" value="standard" />
-                <span class="radio-label">Boleto Clasico</span>
+                <span class="radio-label">Ticket Clasico</span>
                 <span class="radio-price">S/ 3.00 • 1 Opcion</span>
               </label>
             </div>
           </div>
 
           <div class="form-group">
-            <label class="form-label">Cantidad de Boletos</label>
+            <label class="form-label">Cantidad de Tickets</label>
             <div class="qty-selector">
               <button type="button" class="btn-qty" id="qty-minus">-</button>
               <span id="qty-display" class="qty-value">1</span>
@@ -527,17 +561,26 @@
             target="_blank"
             rel="noopener"
           >
-          <svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24"  
-          fill="currentColor" viewBox="0 0 24 24" >
-          <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
-          <path fill-rule="evenodd" d="M18.403 5.633A8.92 8.92 0 0 0 12.053 3c-4.948 0-8.976 4.027-8.978 8.977 0 1.582.413 3.126 1.198 4.488L3 21.116l4.759-1.249a9 9 0 0 0 4.29 1.093h.004c4.947 0 8.975-4.027 8.977-8.977a8.93 8.93 0 0 0-2.627-6.35m-6.35 13.812h-.003a7.45 7.45 0 0 1-3.798-1.041l-.272-.162-2.824.741.753-2.753-.177-.282a7.45 7.45 0 0 1-1.141-3.971c.002-4.114 3.349-7.461 7.465-7.461a7.4 7.4 0 0 1 5.275 2.188 7.42 7.42 0 0 1 2.183 5.279c-.002 4.114-3.349 7.462-7.461 7.462m4.093-5.589c-.225-.113-1.327-.655-1.533-.73s-.354-.112-.504.112-.58.729-.711.879-.262.168-.486.056-.947-.349-1.804-1.113c-.667-.595-1.117-1.329-1.248-1.554s-.014-.346.099-.458c.101-.1.224-.262.336-.393s.149-.224.224-.374.038-.281-.019-.393c-.056-.113-.505-1.217-.692-1.666-.181-.435-.366-.377-.504-.383a10 10 0 0 0-.429-.008.83.83 0 0 0-.599.28c-.206.225-.785.767-.785 1.871s.804 2.171.916 2.321 1.582 2.415 3.832 3.387c.536.231.954.369 1.279.473.537.171 1.026.146 1.413.089.431-.064 1.327-.542 1.514-1.066s.187-.973.131-1.067-.207-.151-.43-.263" clip-rule="evenodd"></path>
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <!--Boxicons v3.0.8 https://boxicons.com | License  https://docs.boxicons.com/free-->
+              <path
+                fill-rule="evenodd"
+                d="M18.403 5.633A8.92 8.92 0 0 0 12.053 3c-4.948 0-8.976 4.027-8.978 8.977 0 1.582.413 3.126 1.198 4.488L3 21.116l4.759-1.249a9 9 0 0 0 4.29 1.093h.004c4.947 0 8.975-4.027 8.977-8.977a8.93 8.93 0 0 0-2.627-6.35m-6.35 13.812h-.003a7.45 7.45 0 0 1-3.798-1.041l-.272-.162-2.824.741.753-2.753-.177-.282a7.45 7.45 0 0 1-1.141-3.971c.002-4.114 3.349-7.461 7.465-7.461a7.4 7.4 0 0 1 5.275 2.188 7.42 7.42 0 0 1 2.183 5.279c-.002 4.114-3.349 7.462-7.461 7.462m4.093-5.589c-.225-.113-1.327-.655-1.533-.73s-.354-.112-.504.112-.58.729-.711.879-.262.168-.486.056-.947-.349-1.804-1.113c-.667-.595-1.117-1.329-1.248-1.554s-.014-.346.099-.458c.101-.1.224-.262.336-.393s.149-.224.224-.374.038-.281-.019-.393c-.056-.113-.505-1.217-.692-1.666-.181-.435-.366-.377-.504-.383a10 10 0 0 0-.429-.008.83.83 0 0 0-.599.28c-.206.225-.785.767-.785 1.871s.804 2.171.916 2.321 1.582 2.415 3.832 3.387c.536.231.954.369 1.279.473.537.171 1.026.146 1.413.089.431-.064 1.327-.542 1.514-1.066s.187-.973.131-1.067-.207-.151-.43-.263"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
             Enviar Comprobante por WhatsApp
           </a>
 
           <p class="sheet-disclaimer">
-            Transfiere el monto exacto por Yape al numero indicado y dale
-            clic al boton para validar tu compra
+            Transfiere el monto exacto por Yape al numero indicado y dale clic
+            al boton para validar tu compra
           </p>
         </div>
       </div>
