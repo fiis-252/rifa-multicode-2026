@@ -1,4 +1,4 @@
-const TARGET_DATE = new Date("2026-10-29T19:00:00").getTime();
+const TARGET_DATE = new Date("2026-11-01T19:00:00").getTime();
 
 function initCountdown() {
   const elDays = document.getElementById("cd-days");
@@ -34,27 +34,6 @@ function initCountdown() {
   update();
   setInterval(update, 1000);
 }
-
-const TREASURY = {
-  "25-2": {
-    name: "Christopher Acosta",
-    phone: "917862194",
-    method: "Yape",
-    codeTitle: "Promo 25-2 (Lobo)",
-  },
-  "26-1": {
-    name: "Tesorería 26-1",
-    phone: "921584492",
-    method: "Yape",
-    codeTitle: "Promo 26-1 (Fenix)",
-  },
-  "26-2": {
-    name: "Tesorería 26-2",
-    phone: "945416248",
-    method: "Yape",
-    codeTitle: "Promo 26-2 (Gengar)",
-  },
-};
 
 const state = {
   tier: "premium",
@@ -112,15 +91,6 @@ function updateCalculatorUI() {
   });
 
   updateTreasuryAndWhatsApp(totalPrice);
-}
-
-function resolveCohort() {
-  if (state.cohort !== "random") {
-    return state.cohort;
-  }
-  const codes = Object.keys(TREASURY);
-  const randomIndex = Math.floor(Math.random() * codes.length);
-  return codes[randomIndex];
 }
 
 const TREASURY_PHONE = "917862194";

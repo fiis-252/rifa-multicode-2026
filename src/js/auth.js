@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         console.error("[auth error]", error);
         setStatus(
-          "Error de conexion con el servidor. Consulta con tu delegado de base.",
+          "Error de conexion con el servidor. Consulta con tu delegado de codigo",
         );
       } finally {
         btnReq.disabled = false;

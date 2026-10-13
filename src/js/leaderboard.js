@@ -113,9 +113,9 @@ async function loadStats() {
   } catch (err) {
     console.error(err);
     if (cohortContainer)
-      cohortContainer.innerHTML = `<p class="table-error">No se pudieron cargar los datos de las bases.</p>`;
+      cohortContainer.innerHTML = `<p class="table-error">No se pudieron cargar los datos</p>`;
     if (vendorList)
-      vendorList.innerHTML = `<li class="table-error">Error al conectar con la tabla de posiciones.</li>`;
+      vendorList.innerHTML = `<li class="table-error">Error al conectar con la tabla de posiciones</li>`;
   }
 }
 
