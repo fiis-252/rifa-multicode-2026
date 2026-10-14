@@ -130,6 +130,7 @@
                 <th>Código</th>
                 <th>Vendedor</th>
                 <th>Fecha</th>
+                <th>Comprobante</th>
               </tr>
             </thead>
             <tbody id="tickets-table-body">
@@ -139,8 +140,21 @@
             </tbody>
           </table>
         </div>
+        <div id="receipt-modal" class="modal-backdrop" style="display: none;">
+          <div class="receipt-modal-card">
+            <div class="receipt-modal-header">
+              <h3 id="receipt-modal-title" class="receipt-modal-title">Comprobante de Pago</h3>
+              <button type="button" id="btn-close-receipt" class="btn-close-icon">&times;</button>
+            </div>
+            <div class="receipt-modal-body">
+              <img id="receipt-modal-img" src="" alt="Voucher" class="receipt-modal-fullimg" />
+            </div>
+          </div>
+        </div>
       </section>
     </main>
+
+    
 
     <script type="module" src="./src/js/tickets.js"></script>
   </body>

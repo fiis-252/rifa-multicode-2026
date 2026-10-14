@@ -104,11 +104,50 @@ function renderTable(tickets) {
         <td><span class="badge-code">${code}</span></td>
         <td><span style="font-size: 0.8rem;">${String(vendorName).trim()}</span></td>
         <td class="date-txt">${date}</td>
+        <td>
+          <button type="button" class="btn-voucher-action" data-id="${t.id}" data-ticket="${serial}" data-buyer="${name}">
+            Ver Voucher
+          </button>
+        </td>
       </tr>
     `;
     })
     .join("");
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("receipt-modal");
+  const modalImg = document.getElementById("receipt-modal-img");
+  const modalTitle = document.getElementById("receipt-modal-title");
+  const btnClose = document.getElementById("btn-close-receipt");
+
+  document
+    .getElementById("tickets-table-body")
+    ?.addEventListener("click", (e) => {
+      const btn = e.target.closest(".btn-voucher-action");
+      if (!btn) return;
+
+      const ticketId = btn.dataset.id;
+      const ticketNum = btn.dataset.ticket;
+      const buyerName = btn.dataset.buyer;
+
+      modalTitle.innerText = `Voucher #${ticketNum} - ${buyerName}`;
+      modalImg.src = `https://devchrisacosta.net/api/rifa-multicode/tickets/receipt/${ticketId}`;
+      modal.style.display = "flex";
+      modal.classList.add("open");
+    });
+
+  const closeReceiptModal = () => {
+    modal.style.display = "none";
+    modal.classList.remove("open");
+    modalImg.src = "";
+  };
+
+  btnClose?.addEventListener("click", closeReceiptModal);
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) closeReceiptModal();
+  });
+});
 
 document.addEventListener("DOMContentLoaded", () => {
   loadTickets();
