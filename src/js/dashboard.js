@@ -1,6 +1,5 @@
 import { apiClient } from "./api.js";
 
-// --- CARGA DE VENTAS PERSONALES Y PESTAÑAS ---
 const tabBtnSell = document.getElementById("tab-btn-sell");
 const tabBtnHistory = document.getElementById("tab-btn-history");
 const viewSellQr = document.querySelector(".dashboard-qr-card");
@@ -8,7 +7,6 @@ const viewSellForm = document.querySelector(".form-sell-card");
 const viewHistory = document.getElementById("view-history");
 const historyList = document.getElementById("vendor-history-list");
 
-// Métricas
 const elVstatTickets = document.getElementById("vstat-tickets-count");
 const elVstatRevenue = document.getElementById("vstat-revenue-count");
 const elVstatBreakdown = document.getElementById("vstat-breakdown");
@@ -134,6 +132,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const totalTickets = qtyPink + qtyBlue;
     if (totalTickets === 0) {
       showToast("Debes seleccionar al menos 1 ticket");
+      return;
+    }
+
+    if (!selectedFile) {
+      showToast("Sube algun comprobante de pago, foto, cap, etc")
       return;
     }
 
