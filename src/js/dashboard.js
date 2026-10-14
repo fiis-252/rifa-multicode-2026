@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (res && res.success) {
         showToast(
-          `${totalTickets} ticket${totalTickets != 1 ? "s" : ""} emitido${totalTickets != 1 ? "s" : ""}.`,
+          `${totalTickets} ticket${totalTickets != 1 ? "s" : ""} emitido${totalTickets != 1 ? "s" : ""}`,
         );
         sellForm.reset();
         btnRemoveThumb?.click();
@@ -178,14 +178,14 @@ document.addEventListener("DOMContentLoaded", () => {
         loadMySales();
         updateTotals();
       } else {
-        showToast(res?.error || "Error al procesar la venta.");
+        showToast(res?.error || "Error al procesar la venta");
       }
     } catch (err) {
       console.error(err);
-      showToast("Fallo crítico al conectar con el servidor.");
+      showToast("Fallo crítico al conectar con el servidor");
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerText = "Confirmar y Emitir Tickets";
+      submitBtn.innerText = "Confirmar Tickets";
     }
   });
 
