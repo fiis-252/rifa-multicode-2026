@@ -9,7 +9,7 @@ async function loadTickets() {
   const mPink = document.getElementById("metric-pink-count");
   const mMoney = document.getElementById("metric-total-money");
 
-  tbody.innerHTML = `<tr><td colspan="6" class="table-loading">obteniendo tickets...</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="7" class="table-loading">obteniendo tickets...</td></tr>`;
 
   try {
     const res = await apiClient.request("/tickets");
@@ -19,7 +19,7 @@ async function loadTickets() {
     renderTable(cachedTickets);
   } catch (err) {
     console.error(err);
-    tbody.innerHTML = `<tr><td colspan="6" class="table-error">error al cargar tickets</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="table-error">error al cargar tickets</td></tr>`;
   }
 }
 
@@ -51,19 +51,33 @@ function renderTable(tickets) {
   if (!tbody) return;
 
   if (tickets.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="6" class="table-empty">No se encontraron tickets registrados.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="7" class="table-empty">No se encontraron tickets registrados.</td></tr>`;
     return;
   }
 
   tbody.innerHTML = tickets
     .map((t, idx) => {
+      /*
+      id: t.id,
+      ticketNumber: t.ticketNumber,
+      buyerName: t.buyerName,
+      buyerPhone: t.buyerPhone,
+      code: t.code,
+      tier: t.tier,
+      weight: t.weight,
+      price: t.price,
+      createdAt: t.createdAt,
+      vendorName: t.vendor ? t.vendor.name : "Desconocido",
+      vendorCode: t.vendor ? t.vendor.code : t.code,
+      */
       const serial =
-        t.ticketNumber || t.number || String(idx + 1).padStart(4, "0");
+        t.ticketNumber || String(idx + 1).padStart(4, "0");
       const isPink =
         t.tier === "premium" || t.type === "premium" || t.weight === 2;
-      const phone = t.phone || t.buyerPhone || "---";
-      const name = t.name || t.buyerName || "---";
-      const code = t.code || t.vendorCode || "---";
+      const phone = t.buyerPhone || "---";
+      const name = t.buyerName || "---";
+      const code = t.code || "---";
+      const vendorName = t.vendorName;
       const date = t.createdAt
         ? new Date(t.createdAt).toLocaleDateString("es-PE", {
             day: "2-digit",
@@ -88,6 +102,7 @@ function renderTable(tickets) {
           </a>
         </td>
         <td><span class="badge-code">${code}</span></td>
+        <td><span style="font-size: 0.8rem;">${String(vendorName).trim()}</span></td>
         <td class="date-txt">${date}</td>
       </tr>
     `;
