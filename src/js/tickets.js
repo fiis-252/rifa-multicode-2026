@@ -92,7 +92,7 @@ function renderTable(tickets) {
         <td><strong class="serial-tag">#${serial}</strong></td>
         <td>
           <span class="type-pill ${isPink ? "pill-pink" : "pill-blue"}">
-            ${isPink ? "Rosa (S/ 5)" : "Azul (S/ 3)"}
+            ${isPink ? "Rosa" : "Azul"}
           </span>
         </td>
         <td><strong>${name}</strong></td>
@@ -101,9 +101,9 @@ function renderTable(tickets) {
             ${phone}
           </a>
         </td>
-        <td><span class="badge-code">${code}</span></td>
+        <td><span class="badge-code">${code == "GENERAL" ? "WEB" : code}</span></td>
         <td><span style="font-size: 0.8rem;">${String(vendorName).trim()}</span></td>
-        <td class="date-txt">${date}</td>
+        <td class="date-txt" style="font-size: 0.6rem;">${date}</td>
         <td>
           <button type="button" class="btn-voucher-action" data-id="${t.id}" data-ticket="${serial}" data-buyer="${name}">
             Ver Voucher
